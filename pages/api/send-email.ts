@@ -1,14 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
-interface ErrorWithMessage {
-  name?: string;
-  message: string;
-  code?: string;
-  command?: string;
-  stack?: string;
-}
-
 if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
   throw new Error('Missing email configuration')
 }
