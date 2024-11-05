@@ -565,14 +565,8 @@ export function LandingPage() {
       {/* Free Low-Fidelity Prototype Offer */}
       <section className="py-16 bg-black scroll-mt-20" id="free-prototype">
         <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex items-center justify-center mb-4 space-x-2">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">Get a Free Low-Fidelity Prototype</h2>
-            <div className="relative group">
-              <Info className="h-5 w-5 text-gray-400 hover:text-white transition-colors cursor-help" />
-              <div className="absolute z-50 bottom-full mb-2 left-1/2 transform -translate-x-1/2 w-64 p-2 bg-white text-black text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                Share your email, and a member of our team will reach out to provide you with a free low-fidelity prototype tailored to your project needs.
-              </div>
-            </div>
+          <div className="flex items-center justify-center mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">Get Your Free Prototype</h2>
           </div>
           
           {/* Prototype Form */}
@@ -595,13 +589,21 @@ export function LandingPage() {
                 value={formData.email}
               />
             </div>
-            <Button
-              type="submit"
-              className="bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Sending...' : 'Get Your Free Prototype'}
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                type="submit"
+                className="bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Get Your Free Prototype'}
+              </Button>
+              <div className="relative group">
+                <Info className="h-5 w-5 text-gray-400 hover:text-white transition-colors cursor-help" />
+                <div className="absolute z-50 bottom-full mb-2 right-0 w-64 p-2 bg-white text-black text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  Share your email, and a member of our team will reach out to provide you with a free low-fidelity prototype tailored to your project needs.
+                </div>
+              </div>
+            </div>
           </form>
 
           {/* Low-Fidelity Example */}
