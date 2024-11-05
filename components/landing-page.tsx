@@ -199,14 +199,79 @@ export function LandingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-[90rem] mx-auto px-4 text-center"
+          className="w-full max-w-[90rem] mx-auto px-4"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight max-w-4xl mx-auto mb-8 text-white">
-            Transform Your Vision into Reality Before Development
-          </h1>
-          <Button size="lg" className={buttonClasses} onClick={() => setIsModalOpen(true)}>
-            Get Started
-          </Button>
+          <div className="flex flex-col items-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight max-w-4xl mx-auto mb-8 text-white text-center">
+              Transform Your Vision into Reality Before Development
+            </h1>
+            <Button size="lg" className={`${buttonClasses} mb-12`} onClick={() => setIsModalOpen(true)}>
+              Get Started
+            </Button>
+
+            {/* Prototype Preview */}
+            <div className="w-full max-w-4xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+                {/* Mobile Preview */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="relative flex justify-center"
+                >
+                  <div className="w-[200px] transform scale-90 sm:scale-100">
+                    <div className="bg-white rounded-[2rem] p-3 shadow-2xl border-6 border-white">
+                      <div className="flex flex-col h-[400px] rounded-xl overflow-hidden">
+                        {/* Header */}
+                        <header className="bg-gray-200 p-2">
+                          <div className="flex items-center justify-between">
+                            <div className="w-16 h-4 bg-gray-300 rounded animate-pulse"></div>
+                            <div className="w-4 h-4 bg-gray-300 rounded-full animate-pulse"></div>
+                          </div>
+                        </header>
+
+                        {/* Content */}
+                        <main className="flex-1 overflow-y-auto p-2 space-y-2">
+                          <div className="h-24 bg-gray-300 rounded-lg animate-pulse"></div>
+                          <div className="h-20 bg-gray-300 rounded-lg animate-pulse"></div>
+                          <div className="h-20 bg-gray-300 rounded-lg animate-pulse"></div>
+                        </main>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Desktop Preview */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="relative"
+                >
+                  <div className="bg-white rounded-lg p-3 shadow-2xl">
+                    <div className="aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+                      <div className="flex h-full">
+                        {/* Sidebar */}
+                        <div className="w-1/4 bg-gray-200 p-3 space-y-3">
+                          <div className="h-4 w-16 bg-gray-300 rounded animate-pulse"></div>
+                          <div className="h-3 w-20 bg-gray-300 rounded animate-pulse"></div>
+                          <div className="h-3 w-20 bg-gray-300 rounded animate-pulse"></div>
+                        </div>
+                        {/* Main Content */}
+                        <div className="flex-1 p-3 space-y-3">
+                          <div className="h-6 w-36 bg-gray-300 rounded animate-pulse"></div>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="h-20 bg-gray-300 rounded animate-pulse"></div>
+                            <div className="h-20 bg-gray-300 rounded animate-pulse"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </section>
 
