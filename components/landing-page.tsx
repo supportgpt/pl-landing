@@ -187,7 +187,7 @@ export function LandingPage() {
               onClick={() => setIsModalOpen(true)}
             >
               <Mail className="h-5 w-5 md:hidden" />
-              <span className="hidden md:inline">Get In Touch</span>
+              <span className="hidden md:inline" style={{ willChange: 'auto' }}>Get In Touch</span>
             </Button>
           </nav>
         </div>
