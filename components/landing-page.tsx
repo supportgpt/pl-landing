@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -158,6 +158,12 @@ export function LandingPage() {
     }
   }
 
+  const handleModalOpen = useCallback(() => {
+    requestAnimationFrame(() => {
+      setIsModalOpen(true)
+    })
+  }, [])
+
   return (
     <div className="min-h-screen bg-black text-white font-['Lexend_Deca',sans-serif] scroll-smooth overflow-x-hidden">
       <style jsx global>{`
@@ -184,7 +190,7 @@ export function LandingPage() {
           <nav className="absolute right-4">
             <Button 
               className={`${buttonClasses} w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-2`} 
-              onClick={() => setIsModalOpen(true)}
+              onClick={handleModalOpen}
             >
               <Mail className="h-5 w-5 md:hidden" />
               <span className="hidden md:inline" style={{ willChange: 'auto' }}>Get In Touch</span>
@@ -205,7 +211,15 @@ export function LandingPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight max-w-4xl mx-auto mb-8 text-white text-center">
               Transform Your Vision into Reality Before Development
             </h1>
-            <Button size="lg" className={`${buttonClasses} mb-12`} onClick={() => setIsModalOpen(true)}>
+            <Button 
+              size="lg" 
+              className={`${buttonClasses} will-change-transform`}
+              onClick={handleModalOpen}
+              style={{
+                transform: 'translateZ(0)', // Hardware acceleration
+                backfaceVisibility: 'hidden'
+              }}
+            >
               Get Started
             </Button>
 
@@ -687,7 +701,7 @@ export function LandingPage() {
       <section className="py-24 text-center bg-black">
         <div className="w-full max-w-[90rem] mx-auto px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white">Ready to Validate Your Idea?</h2>
-          <Button size="lg" className={buttonClasses} onClick={() => setIsModalOpen(true)}>
+          <Button size="lg" className={buttonClasses} onClick={handleModalOpen}>
             Get In Touch
           </Button>
         </div>
