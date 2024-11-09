@@ -136,7 +136,7 @@ export function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white font-['Lexend_Deca',sans-serif] scroll-smooth overflow-x-hidden">
+    <main className="min-h-screen bg-black">
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
         body {
@@ -683,54 +683,6 @@ export function LandingPage() {
 
       <Divider />
 
-      {/* Free Low-Fidelity Prototype Offer */}
-      <section className="py-16 bg-black scroll-mt-20" id="free-prototype">
-        <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex items-center justify-center mb-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">Get A Free Low Fidelity Prototype</h2>
-          </div>
-          
-          {/* Prototype Form */}
-          <form
-            className="flex flex-col items-center space-y-8"
-            onSubmit={handlePrototypeSubmit}
-          >
-            <div className="w-full max-w-md">
-              <Label htmlFor="email" className="sr-only">
-                Your Email
-              </Label>
-              <Input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email address"
-                required
-                className="w-full bg-white text-black px-5 py-4 rounded-lg shadow-md focus:outline-none focus:ring-4 focus:ring-primary transition duration-300"
-                onChange={handleInputChange}
-                value={formData.email}
-              />
-            </div>
-            <div className="flex items-center gap-2">
-              <Button
-                type="submit"
-                className="bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Get Your Free Prototype'}
-              </Button>
-              <div className="relative group">
-                <Info className="h-5 w-5 text-gray-400 hover:text-white transition-colors cursor-help" />
-                <div className="absolute z-50 bottom-full mb-2 right-0 w-64 p-2 bg-white text-black text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                  Share your email, and a member of our team will reach out to provide you with a free low-fidelity prototype tailored to your project needs.
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <Divider />
-
       {/* CTA Section */}
       <section className="py-24 text-center bg-black">
         <div className="w-full max-w-[90rem] mx-auto px-4">
@@ -888,6 +840,6 @@ export function LandingPage() {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </main>
   )
 }
