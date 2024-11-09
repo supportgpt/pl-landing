@@ -10,9 +10,26 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Monitor, Users, Share2, Zap, Box, Layout, ArrowRight, ArrowLeft, Menu, X, CheckCircle, Info, Mail } from "lucide-react"
+import { 
+  Monitor, 
+  Users, 
+  Settings, 
+  CreditCard,
+  Smartphone,
+  Mail,
+  ArrowLeft,
+  ArrowRight,
+  X,
+  Info,
+  Share2,
+  Zap,
+  Box,
+  Layout
+} from 'lucide-react'
 import { Toaster, toast } from 'react-hot-toast'
 import LowFidelityExample from "@/components/ui/LowFidelityExample"
+import HighFidelityExample from "@/components/prototypes/HighFidelityExample"
+import { cn } from "@/lib/utils"
 
 const Divider = () => (
   <div className="py-16">
@@ -32,13 +49,24 @@ type PrototypeFormData = {
   email: string
 }
 
+const buttonClasses = "bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200"
+
+interface FormData {
+  email: string
+  name: string
+  projectDetails: string
+}
+
 export function LandingPage() {
   const [currentStory, setCurrentStory] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    projectDetails: ""
+  const [isPrototypeModalOpen, setIsPrototypeModalOpen] = useState(false)
+  const [prototypeView, setPrototypeView] = useState<'desktop' | 'mobile'>('desktop')
+  const [error, setError] = useState<string | null>(null)
+  const [formData, setFormData] = useState<FormData>({
+    email: '',
+    name: '',
+    projectDetails: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -49,12 +77,32 @@ export function LandingPage() {
     return () => clearInterval(timer)
   }, [])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleModalOpen = useCallback(() => {
+    requestAnimationFrame(() => {
+      setIsModalOpen(true)
+    })
+  }, [])
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target
-    setFormData(prevData => ({
-      ...prevData,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }))
+  }
+
+  const handlePrototypeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    try {
+      // Add your form submission logic here
+    } catch (error) {
+      console.error('Error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleModalSubmit = async (e: React.FormEvent) => {
@@ -72,97 +120,19 @@ export function LandingPage() {
         }),
       })
 
-      const data = await response.json()
-
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to send email')
+        throw new Error('Failed to send')
       }
 
       setIsModalOpen(false)
-      setFormData({ name: "", email: "", projectDetails: "" })
-      toast.success('Form submitted successfully!', {
-        style: {
-          border: '1px solid #ffffff',
-          padding: '16px',
-          color: '#ffffff',
-          background: '#000000',
-        },
-        iconTheme: {
-          primary: '#ffffff',
-          secondary: '#000000',
-        },
-      })
+      setFormData({ email: '', name: '', projectDetails: '' })
+      toast.success('Message sent successfully!')
     } catch (error) {
-      const err = error as { message: string }
-      console.error('Error:', err)
-      toast.error(err.message || 'Something went wrong. Please try again later.', {
-        style: {
-          border: '1px solid #ffffff',
-          padding: '16px',
-          color: '#ffffff',
-          background: '#000000',
-        },
-      })
+      toast.error('Failed to send message')
     } finally {
       setIsSubmitting(false)
     }
   }
-
-  const buttonClasses = "bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200"
-
-  const handlePrototypeSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email
-        }),
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to send request')
-      }
-
-      toast.success('Thank you! A member of our team will reach out to you shortly.', {
-        style: {
-          border: '1px solid #ffffff',
-          padding: '16px',
-          color: '#000000',
-          background: '#ffffff',
-        },
-        iconTheme: {
-          primary: '#000000',
-          secondary: '#ffffff',
-        },
-      })
-      
-      setFormData(prev => ({ ...prev, email: "" }))
-    } catch (error) {
-      toast.error('Something went wrong. Please try again later.', {
-        style: {
-          border: '1px solid #ffffff',
-          padding: '16px',
-          color: '#ffffff',
-          background: '#000000',
-        },
-        duration: 5000,
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleModalOpen = useCallback(() => {
-    requestAnimationFrame(() => {
-      setIsModalOpen(true)
-    })
-  }, [])
 
   return (
     <div className="min-h-screen bg-black text-white font-['Lexend_Deca',sans-serif] scroll-smooth overflow-x-hidden">
@@ -353,6 +323,73 @@ export function LandingPage() {
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* What To Expect Section */}
+      <section className="py-24 bg-black scroll-mt-20" id="prototypes">
+        <div className="w-full max-w-[90rem] mx-auto px-4">
+          <div className="flex flex-col items-center justify-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">What To Expect From Our Prototypes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
+              <div className="bg-black/40 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
+                  <Users className="h-5 w-5 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">User-Centric Design</h3>
+                <p className="text-gray-400 text-sm">
+                  Intuitive interfaces designed for your target users, ensuring seamless interactions.
+                </p>
+              </div>
+              <div className="bg-black/40 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
+                  <Settings className="h-5 w-5 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Functional Flows</h3>
+                <p className="text-gray-400 text-sm">
+                  Complete user journeys with interactive elements and realistic data.
+                </p>
+              </div>
+              <div className="bg-black/40 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
+                  <CreditCard className="h-5 w-5 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">Responsive Design</h3>
+                <p className="text-gray-400 text-sm">
+                  Optimized for both desktop and mobile experiences.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            {/* Desktop View */}
+            <Button 
+              size="lg"
+              onClick={() => setIsPrototypeModalOpen(true)}
+              className={cn(
+                "hidden md:inline-flex bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200",
+                "px-8 py-6 text-lg"
+              )}
+            >
+              Try Interactive Demo
+            </Button>
+
+            {/* Mobile View */}
+            <Button 
+              size="lg"
+              disabled
+              className={cn(
+                "md:hidden bg-black text-white/60 border border-white/20 cursor-not-allowed",
+                "px-8 py-6 text-lg"
+              )}
+            >
+              View on Desktop
+            </Button>
           </div>
         </div>
       </section>
@@ -645,7 +682,7 @@ export function LandingPage() {
       <section className="py-16 bg-black scroll-mt-20" id="free-prototype">
         <div className="w-full max-w-[90rem] mx-auto px-4">
           <div className="flex items-center justify-center mb-4">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">Get Your Free Prototype</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">Get A Free Low Fidelity Prototype</h2>
           </div>
           
           {/* Prototype Form */}
@@ -684,14 +721,6 @@ export function LandingPage() {
               </div>
             </div>
           </form>
-
-          {/* Low-Fidelity Example */}
-          <div className="mt-16">
-            <h3 className="text-2xl font-semibold text-white mb-4 text-center">Example of a Low-Fidelity Prototype</h3>
-            <div className="max-w-5xl mx-auto overflow-hidden">
-              <LowFidelityExample />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -770,6 +799,72 @@ export function LandingPage() {
               </Button>
             </DialogFooter>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isPrototypeModalOpen} onOpenChange={setIsPrototypeModalOpen}>
+        <DialogContent className="max-w-6xl bg-black border border-white/10 pt-2 w-[95vw] h-[90vh] overflow-y-auto">
+          {/* Close Button */}
+          <button
+            onClick={() => setIsPrototypeModalOpen(false)}
+            className="absolute right-4 top-4 p-2 text-white/60 hover:text-white transition-colors"
+          >
+            <X className="h-4 w-4" />
+          </button>
+
+          {/* Content Container */}
+          <div className="space-y-6 mt-6">
+            {/* Device Toggle */}
+            <div className="hidden md:flex items-center justify-center px-2">
+              <div className="bg-white/10 rounded-lg p-1 flex gap-1">
+                <button
+                  onClick={() => setPrototypeView('desktop')}
+                  className={cn(
+                    "px-6 py-2 rounded-md flex items-center gap-2 transition-colors",
+                    prototypeView === 'desktop'
+                      ? "bg-white text-black"
+                      : "text-white hover:bg-white/5"
+                  )}
+                >
+                  <Monitor className="h-4 w-4" />
+                  <span className="font-medium">Desktop</span>
+                </button>
+                <button
+                  onClick={() => setPrototypeView('mobile')}
+                  className={cn(
+                    "px-6 py-2 rounded-md flex items-center gap-2 transition-colors",
+                    prototypeView === 'mobile'
+                      ? "bg-white text-black"
+                      : "text-white hover:bg-white/5"
+                  )}
+                >
+                  <Smartphone className="h-4 w-4" />
+                  <span className="font-medium">Mobile</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Mobile Message */}
+            <div className="block md:hidden h-[60vh] flex flex-col items-center justify-center text-center px-4">
+              <Monitor className="h-12 w-12 text-white/60 mb-4" />
+              <h3 className="text-xl font-medium text-white mb-2">Desktop View Recommended</h3>
+              <p className="text-white/60 max-w-sm">
+                For the best experience viewing our interactive prototypes, please visit this page on a desktop device.
+              </p>
+            </div>
+
+            {/* Prototype Container */}
+            <div className="hidden md:block bg-black border border-white/10 rounded-lg overflow-hidden mt-6">
+              <div className={cn(
+                "transition-all duration-500 transform",
+                prototypeView === 'mobile' 
+                  ? "w-[390px] h-[844px] scale-[0.65] origin-top mx-auto" 
+                  : "w-full aspect-video scale-[0.8] origin-top",
+              )}>
+                <HighFidelityExample type={prototypeView} />
+              </div>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
