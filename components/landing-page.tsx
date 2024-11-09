@@ -135,6 +135,14 @@ export function LandingPage() {
     }
   }
 
+  const handleNavigation = useCallback((e: React.MouseEvent, id: string) => {
+    e.preventDefault()
+    requestAnimationFrame(() => {
+      const element = document.getElementById(id)
+      element?.scrollIntoView({ behavior: 'smooth' })
+    })
+  }, [])
+
   return (
     <main className="min-h-screen bg-black">
       <style jsx global>{`
