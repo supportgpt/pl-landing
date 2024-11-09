@@ -370,11 +370,20 @@ export function LandingPage() {
             {/* Desktop View */}
             <Button 
               size="lg"
-              onClick={() => setIsPrototypeModalOpen(true)}
+              onClick={useCallback(() => {
+                requestAnimationFrame(() => {
+                  setIsPrototypeModalOpen(true)
+                })
+              }, [])}
               className={cn(
-                "hidden md:inline-flex bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200",
-                "px-8 py-6 text-lg"
+                "hidden md:inline-flex bg-black text-white border border-white hover:bg-white hover:text-black",
+                "px-8 py-6 text-lg will-change-transform",
+                "transition-transform duration-200" // Simplified transition
               )}
+              style={{
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
             >
               Try Interactive Demo
             </Button>
