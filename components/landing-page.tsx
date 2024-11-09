@@ -377,13 +377,8 @@ export function LandingPage() {
               }, [])}
               className={cn(
                 "hidden md:inline-flex bg-black text-white border border-white hover:bg-white hover:text-black",
-                "px-8 py-6 text-lg will-change-transform",
-                "transition-transform duration-200" // Simplified transition
+                "px-8 py-6 text-lg will-change-transform transition-colors duration-200"
               )}
-              style={{
-                transform: 'translateZ(0)',
-                backfaceVisibility: 'hidden'
-              }}
             >
               Try Interactive Demo
             </Button>
