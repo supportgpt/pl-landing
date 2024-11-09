@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useMemo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
@@ -135,13 +135,57 @@ export function LandingPage() {
     }
   }
 
+  // Memoize navigation items
+  const navItems = useMemo(() => [
+    { id: 'features', label: 'Features' },
+    { id: 'pricing', label: 'Pricing' },
+    // Add other nav items here
+  ], [])
+
+  // Optimized navigation handler
   const handleNavigation = useCallback((e: React.MouseEvent, id: string) => {
     e.preventDefault()
-    requestAnimationFrame(() => {
-      const element = document.getElementById(id)
-      element?.scrollIntoView({ behavior: 'smooth' })
-    })
+    const element = document.getElementById(id)
+    if (element) {
+      // Use native smooth scroll with reduced motion preference check
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      
+      if (prefersReducedMotion) {
+        element.scrollIntoView()
+      } else {
+        requestAnimationFrame(() => {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          })
+        })
+      }
+    }
   }, [])
+
+  // Navigation component
+  const Navigation = useCallback(() => (
+    <nav className="hidden md:flex items-center gap-8">
+      {navItems.map(({ id, label }) => (
+        <button
+          key={id}
+          onClick={(e) => handleNavigation(e, id)}
+          className={cn(
+            "font-medium appearance-none bg-transparent",
+            "hover:text-gray-300 transition-transform duration-200",
+            "will-change-transform transform-gpu"
+          )}
+          style={{
+            transform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            touchAction: 'manipulation'
+          }}
+        >
+          {label}
+        </button>
+      ))}
+    </nav>
+  ), [navItems, handleNavigation])
 
   return (
     <main className="min-h-screen bg-black">
@@ -155,8 +199,9 @@ export function LandingPage() {
       <Toaster position="top-center" />
       
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10 h-20">
-        <div className="w-full max-w-[90rem] mx-auto flex items-center justify-between h-full px-4 relative">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <div className="flex items-center justify-between h-16 px-4 max-w-[90rem] mx-auto">
+          {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/protolaunch.png"
@@ -166,15 +211,20 @@ export function LandingPage() {
               className="h-8 w-auto sm:h-10"
             />
           </Link>
-          <nav className="absolute right-4">
-            <Button 
-              className={`${buttonClasses} w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-2`} 
-              onClick={handleModalOpen}
-            >
-              <Mail className="h-5 w-5 md:hidden" />
-              <span className="hidden md:inline" style={{ willChange: 'auto' }}>Get In Touch</span>
-            </Button>
-          </nav>
+          
+          {/* Navigation */}
+          <Navigation />
+
+          {/* Get in Touch Button */}
+          <Button 
+            className={`${buttonClasses} w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-2`} 
+            onClick={useCallback(() => {
+              requestAnimationFrame(() => setIsModalOpen(true))
+            }, [])}
+          >
+            <Mail className="h-5 w-5 md:hidden" />
+            <span className="hidden md:inline">Get In Touch</span>
+          </Button>
         </div>
       </header>
 
