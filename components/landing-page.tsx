@@ -31,6 +31,7 @@ import { Toaster, toast } from 'react-hot-toast'
 import LowFidelityExample from "@/components/ui/LowFidelityExample"
 import HighFidelityExample from "@/components/prototypes/HighFidelityExample"
 import { cn } from "@/lib/utils"
+import { Navigation } from './navigation'
 
 const Divider = () => (
   <div className="py-16">
@@ -135,19 +136,9 @@ export function LandingPage() {
     }
   }
 
-  // Memoize navigation items
-  const navItems = useMemo(() => [
-    { id: 'features', label: 'Features' },
-    { id: 'pricing', label: 'Pricing' },
-    // Add other nav items here
-  ], [])
-
-  // Optimized navigation handler
-  const handleNavigation = useCallback((e: React.MouseEvent, id: string) => {
-    e.preventDefault()
+  const handleNavigation = useCallback((id: string) => {
     const element = document.getElementById(id)
     if (element) {
-      // Use native smooth scroll with reduced motion preference check
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       
       if (prefersReducedMotion) {
@@ -162,30 +153,6 @@ export function LandingPage() {
       }
     }
   }, [])
-
-  // Navigation component
-  const Navigation = useCallback(() => (
-    <nav className="hidden md:flex items-center gap-8">
-      {navItems.map(({ id, label }) => (
-        <button
-          key={id}
-          onClick={(e) => handleNavigation(e, id)}
-          className={cn(
-            "font-medium appearance-none bg-transparent",
-            "hover:text-gray-300 transition-transform duration-200",
-            "will-change-transform transform-gpu"
-          )}
-          style={{
-            transform: 'translateZ(0)',
-            backfaceVisibility: 'hidden',
-            touchAction: 'manipulation'
-          }}
-        >
-          {label}
-        </button>
-      ))}
-    </nav>
-  ), [navItems, handleNavigation])
 
   return (
     <main className="min-h-screen bg-black">
@@ -213,7 +180,7 @@ export function LandingPage() {
           </Link>
           
           {/* Navigation */}
-          <Navigation />
+          <Navigation onNavigate={handleNavigation} />
 
           {/* Get in Touch Button */}
           <Button 
