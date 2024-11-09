@@ -24,7 +24,8 @@ import {
   Share2,
   Zap,
   Box,
-  Layout
+  Layout,
+  Loader2
 } from 'lucide-react'
 import { Toaster, toast } from 'react-hot-toast'
 import LowFidelityExample from "@/components/ui/LowFidelityExample"
@@ -742,67 +743,83 @@ export function LandingPage() {
 
       {/* Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-[425px] bg-black text-white border border-white mx-4 sm:mx-auto">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Get In Touch</DialogTitle>
-            <DialogDescription className="text-gray-400">
-              Tell us about your project and we'll get back to you shortly.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleModalSubmit}>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
+        <DialogContent className="sm:max-w-[500px] p-0">
+          <div className="space-y-6 p-4 sm:p-6">
+            <DialogHeader>
+              <DialogTitle className="text-xl sm:text-2xl text-center sm:text-left">
+                Get in Touch
+              </DialogTitle>
+              <DialogDescription className="text-center sm:text-left">
+                Tell us about your project and we'll get back to you within 24 hours.
+              </DialogDescription>
+            </DialogHeader>
+
+            <form onSubmit={handleModalSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-medium">
                   Name
                 </Label>
                 <Input
                   id="name"
                   name="name"
+                  type="text"
+                  placeholder="Your name"
+                  className="w-full px-3 py-2 text-base"
+                  required
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="col-span-3 bg-white border-gray-300 text-black"
-                  required
                 />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="email" className="text-right">
+
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium">
                   Email
                 </Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
+                  placeholder="your@email.com"
+                  className="w-full px-3 py-2 text-base"
+                  required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="col-span-3 bg-white border-gray-300 text-black"
-                  required
                 />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="projectDetails" className="text-right">
+
+              <div className="space-y-2">
+                <Label htmlFor="projectDetails" className="text-sm font-medium">
                   Project Details
                 </Label>
                 <Textarea
                   id="projectDetails"
                   name="projectDetails"
+                  placeholder="Tell us about your project..."
+                  className="w-full min-h-[100px] px-3 py-2 text-base"
+                  required
                   value={formData.projectDetails}
                   onChange={handleInputChange}
-                  className="col-span-3 bg-white border-gray-300 text-black"
-                  rows={4}
-                  required
                 />
               </div>
-            </div>
-            <DialogFooter>
-              <Button 
-                type="submit" 
-                className={buttonClasses}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Submit'}
-              </Button>
-            </DialogFooter>
-          </form>
+
+              <div className="pt-4">
+                <Button
+                  type="submit"
+                  className="w-full bg-black text-white hover:bg-white hover:text-black border border-black transition-colors py-5 text-base"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      <span>Sending...</span>
+                    </div>
+                  ) : (
+                    'Send Message'
+                  )}
+                </Button>
+              </div>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
 
