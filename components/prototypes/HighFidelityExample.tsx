@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { LucideIcon } from 'lucide-react'
@@ -8,6 +8,7 @@ import {
   ArrowLeft, Home, Bell, 
   Plus, CreditCard, ChevronRight, Wallet 
 } from 'lucide-react'
+import { cn } from "@/lib/utils"
 
 type ActiveScreen = 'main' | 'transactions' | 'cards'
 
@@ -40,9 +41,11 @@ export default function HighFidelityExample({ type }: { type: 'desktop' | 'mobil
     { icon: CreditCard, label: 'Cards', screen: 'cards' },
   ]
 
-  const handleScreenChange = (screen: ActiveScreen) => {
-    setActiveScreen(screen)
-  }
+  const handleScreenChange = useCallback((screen: ActiveScreen) => {
+    requestAnimationFrame(() => {
+      setActiveScreen(screen)
+    })
+  }, [])
 
   if (type === 'mobile') {
     return (
@@ -209,11 +212,16 @@ export default function HighFidelityExample({ type }: { type: 'desktop' | 'mobil
             <button
               key={item.label}
               onClick={() => handleScreenChange(item.screen)}
-              className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
-                activeScreen === item.screen 
-                  ? 'bg-blue-50 text-blue-600' 
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
+              className={cn(
+                "w-full flex items-center space-x-3 px-3 py-2 rounded-lg",
+                "will-change-transform transform-gpu",
+                "hover:bg-gray-100 transition-transform duration-200",
+                activeScreen === item.screen ? "bg-gray-100 text-black" : "text-gray-600"
+              )}
+              style={{
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden'
+              }}
             >
               <item.icon className="h-5 w-5" />
               <span>{item.label}</span>
