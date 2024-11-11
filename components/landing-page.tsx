@@ -426,60 +426,68 @@ export function LandingPage() {
 
       <Divider />
 
-      {/* Why Invest in Prototypes */}
-      <section className="py-16 bg-black scroll-mt-20" id="why-prototype">
+      {/* Our Process Section */}
+      <section className="py-24 bg-black scroll-mt-20" id="our-process">
         <div className="w-full max-w-[90rem] mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-16 text-left text-white">Why Invest in Prototypes?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Monitor className="h-6 w-6" />,
-                title: "Reduce Development Costs",
-                description: "Validate ideas early to save significant resources."
-              },
-              {
-                icon: <Users className="h-6 w-6" />,
-                title: "Early User Validation",
-                description: "Ensure your product resonates with your target audience from day one."
-              },
-              {
-                icon: <Share2 className="h-6 w-6" />,
-                title: "Secure Stakeholder Buy-in",
-                description: "Present a tangible vision that stakeholders can interact with."
-              },
-              {
-                icon: <Zap className="h-6 w-6" />,
-                title: "Faster Time to Market",
-                description: "Streamline development and reduce iterations."
-              },
-              {
-                icon: <Box className="h-6 w-6" />,
-                title: "Minimize Risk",
-                description: "Identify and address potential issues early in the process."
-              },
-              {
-                icon: <Layout className="h-6 w-6" />,
-                title: "Clear Development Vision",
-                description: "Provide a precise blueprint for developers."
-              }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <Card className="bg-black border-white border">
-                  <CardContent className="p-6">
-                    <div className="mb-4 p-2 bg-white/10 rounded-lg w-fit text-white">
-                      {item.icon}
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-white">{item.title}</h3>
-                    <p className="text-gray-400 text-sm">{item.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="flex flex-col items-center justify-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
+              Our Process - Validating Your SaaS Idea with Confidence
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+              {[
+                {
+                  step: "Step 1",
+                  title: "Discovery & Strategy",
+                  description: "We start by understanding your vision, goals, and target audience. Through an initial discovery phase, we align on your product's core concept and user expectations, laying the foundation for an effective prototype.",
+                  icon: <Users className="h-6 w-6 text-white" />
+                },
+                {
+                  step: "Step 2",
+                  title: "Building Interactive Prototypes",
+                  description: "We create a fully interactive, high-fidelity prototype of your idea. Unlike static mockups, our prototypes let you experience real user flows, key interactions, and essential functionalities.",
+                  icon: <Layout className="h-6 w-6 text-white" />
+                },
+                {
+                  step: "Step 3",
+                  title: "User Testing & Validation",
+                  description: "With the prototype ready, we help you run user tests to see how your target audience interacts with it. This stage is critical for identifying what works well and where improvements are necessary.",
+                  icon: <Settings className="h-6 w-6 text-white" />
+                },
+                {
+                  step: "Step 4",
+                  title: "Investor-Ready Demos",
+                  description: "Our final prototypes are web-based, fully interactive, and ready to impress. Whether you're meeting with stakeholders or pitching to investors, you'll showcase a realistic, functional demo.",
+                  icon: <Share2 className="h-6 w-6 text-white" />
+                }
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <Card className="bg-black border-white border h-full">
+                    <CardContent className="p-6 space-y-4">
+                      <div className="flex items-center gap-4 mb-2">
+                        <div className="p-2 bg-white/10 rounded-lg">
+                          {item.icon}
+                        </div>
+                        <div className="text-sm font-medium text-white/60">
+                          {item.step}
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        {item.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
