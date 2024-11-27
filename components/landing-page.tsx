@@ -112,27 +112,34 @@ export function LandingPage() {
   const handleModalSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    
+    if (!formData.email || !formData.name || !formData.projectDetails || !formData.inquiryType) {
+      toast.error('Please fill in all required fields')
+      setIsSubmitting(false)
+      return
+    }
+
     try {
       const response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          type: 'contact'
-        }),
+        body: JSON.stringify(formData),
       })
 
+      const data = await response.json()
+
       if (!response.ok) {
-        throw new Error('Failed to send')
+        throw new Error(data.error || 'Failed to send message')
       }
 
       setIsModalOpen(false)
       setFormData({ email: '', name: '', projectDetails: '', inquiryType: '' })
       toast.success('Message sent successfully!')
     } catch (error) {
-      toast.error('Failed to send message')
+      console.error('Error:', error)
+      toast.error(error instanceof Error ? error.message : 'Failed to send message')
     } finally {
       setIsSubmitting(false)
     }
