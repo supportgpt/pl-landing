@@ -57,6 +57,7 @@ interface FormData {
   email: string
   name: string
   projectDetails: string
+  inquiryType: string
 }
 
 export function LandingPage() {
@@ -68,7 +69,8 @@ export function LandingPage() {
   const [formData, setFormData] = useState<FormData>({
     email: '',
     name: '',
-    projectDetails: ''
+    projectDetails: '',
+    inquiryType: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -127,7 +129,7 @@ export function LandingPage() {
       }
 
       setIsModalOpen(false)
-      setFormData({ email: '', name: '', projectDetails: '' })
+      setFormData({ email: '', name: '', projectDetails: '', inquiryType: '' })
       toast.success('Message sent successfully!')
     } catch (error) {
       toast.error('Failed to send message')
@@ -184,7 +186,7 @@ export function LandingPage() {
 
           {/* Get in Touch Button */}
           <Button 
-            className={`${buttonClasses} w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-2`} 
+            className={cn(buttonClasses, "w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-2")} 
             onClick={useCallback(() => {
               requestAnimationFrame(() => setIsModalOpen(true))
             }, [])}
@@ -209,8 +211,7 @@ export function LandingPage() {
               <div>Launch in Weeks.</div>
             </div>
             <Button 
-              size="lg" 
-              className={`${buttonClasses} text-lg px-8 py-4 mb-24 hover:scale-105 transition-all duration-200`}
+              className={cn(buttonClasses, "text-lg px-8 py-4 mb-24 hover:scale-105 transition-all duration-200")}
               onClick={handleModalOpen}
             >
               Get In Touch
@@ -409,8 +410,7 @@ export function LandingPage() {
             </div>
 
             <Button
-              size="lg"
-              className={`${buttonClasses} text-lg px-8 py-4 hover:scale-105 transition-all duration-200`}
+              className={cn(buttonClasses, "text-lg px-8 py-4 hover:scale-105 transition-all duration-200")}
               onClick={() => setIsPrototypeModalOpen(true)}
             >
               Try Interactive Demo
@@ -430,16 +430,14 @@ export function LandingPage() {
               <Button
                 onClick={() => setCurrentStory((prev) => (prev === 0 ? 1 : 0))}
                 variant="outline"
-                size="icon"
-                className={`${buttonClasses} w-10 h-10 p-0`}
+                className={cn(buttonClasses, "w-10 h-10 p-0")}
               >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
               <Button
                 onClick={() => setCurrentStory((prev) => (prev === 0 ? 1 : 0))}
                 variant="outline"
-                size="icon"
-                className={`${buttonClasses} w-10 h-10 p-0`}
+                className={cn(buttonClasses, "w-10 h-10 p-0")}
               >
                 <ArrowRight className="h-4 w-4" />
               </Button>
@@ -644,86 +642,148 @@ export function LandingPage() {
       <section className="py-32 bg-black scroll-mt-20" id="pricing">
         <div className="w-full max-w-[90rem] mx-auto px-4">
           <div className="flex flex-col items-center justify-center mb-24">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">Simple, Transparent Pricing</h2>
+            <span className="text-white/60 uppercase tracking-wider text-sm font-medium mb-4">Pricing Plans</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">Launch Your MVP in Weeks</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
-              <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 relative overflow-hidden">
+              <Card className="bg-black border-white/20 border hover:border-white/40 transition-all duration-300 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 bg-white text-black px-4 py-2 text-sm font-semibold">
-                  Standard
+                  Most Popular
                 </div>
                 <CardContent className="p-8">
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-2">Startup MVP</h3>
+                    <p className="text-white/60">3-week development cycle</p>
+                  </div>
+
                   <div className="flex items-baseline mb-8">
                     <span className="text-5xl font-bold text-white">$1,999</span>
-                    <span className="text-white/60 ml-2 text-lg">flat rate</span>
+                    <span className="text-white/60 ml-2">flat rate</span>
                   </div>
-                  
-                  <h3 className="text-2xl font-bold text-white mb-8">MVP Package</h3>
                   
                   <ul className="space-y-4 mb-8">
                     {[
-                      "1-week interactive prototype",
-                      "2-week MVP development",
-                      "Production deployment",
-                      "2 rounds of revisions",
-                      "Launch support",
-                      "Infrastructure setup"
-                    ].map((feature, i) => (
-                      <li key={i} className="flex items-start space-x-3 text-white/80">
-                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5">
-                          <div className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                      {
+                        feature: "Interactive Prototype in 1 Week",
+                        description: "Test with real users before building"
+                      },
+                      {
+                        feature: "Full MVP in 2 Weeks",
+                        description: "Production-ready codebase"
+                      },
+                      {
+                        feature: "2 Rounds of Revisions",
+                        description: "Fine-tune your product"
+                      },
+                      {
+                        feature: "Infrastructure Setup",
+                        description: "Ready for user traffic"
+                      },
+                      {
+                        feature: "Launch Support",
+                        description: "Technical guidance & deployment"
+                      },
+                      {
+                        feature: "Modern Tech Stack",
+                        description: "Built with scalable technologies"
+                      }
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start space-x-3 text-white/80 group-hover:text-white transition-colors duration-200">
+                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5 group-hover:bg-white/10 transition-colors duration-200">
+                          <div className="h-1.5 w-1.5 rounded-full bg-white/60 group-hover:bg-white transition-colors duration-200" />
                         </div>
-                        <span>{feature}</span>
+                        <div>
+                          <div className="font-medium">{item.feature}</div>
+                          <div className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-200">{item.description}</div>
+                        </div>
                       </li>
                     ))}
                   </ul>
                   
                   <Button 
-                    size="lg"
-                    className={`${buttonClasses} w-full py-4 text-lg`}
-                    onClick={handleModalOpen}
+                    className={cn(
+                      buttonClasses,
+                      "w-full py-6 text-lg font-medium group-hover:scale-[1.02] transition-all duration-200"
+                    )}
+                    onClick={() => {
+                      setFormData(prev => ({ ...prev, inquiryType: 'Startup MVP' }));
+                      handleModalOpen();
+                    }}
                   >
-                    Get In Touch
+                    Start Your Project
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-white/10 text-white px-4 py-2 text-sm font-semibold">
+              <Card className="bg-black border-white/20 border hover:border-white/40 transition-all duration-300 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 text-sm font-semibold">
                   Enterprise
                 </div>
                 <CardContent className="p-8">
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-2">Custom Build</h3>
+                    <p className="text-white/60">Flexible timeline</p>
+                  </div>
+
                   <div className="flex items-baseline mb-8">
                     <span className="text-5xl font-bold text-white">Custom</span>
-                    <span className="text-white/60 ml-2 text-lg">build</span>
+                    <span className="text-white/60 ml-2">pricing</span>
                   </div>
-                  
-                  <h3 className="text-2xl font-bold text-white mb-8">Complex Projects</h3>
                   
                   <ul className="space-y-4 mb-8">
                     {[
-                      "Everything in MVP Package",
-                      "Custom architecture",
-                      "Third-party integrations",
-                      "Flexible timeline",
-                      "Unlimited revisions",
-                      "Priority support",
-                      "Advanced security"
-                    ].map((feature, i) => (
-                      <li key={i} className="flex items-start space-x-3 text-white/80">
-                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5">
-                          <div className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                      {
+                        feature: "Everything in Startup MVP",
+                        description: "All core features included"
+                      },
+                      {
+                        feature: "Custom Architecture",
+                        description: "Tailored to your needs"
+                      },
+                      {
+                        feature: "Third-party Integrations",
+                        description: "Connect with your tools"
+                      },
+                      {
+                        feature: "Flexible Timeline",
+                        description: "Adapt to your schedule"
+                      },
+                      {
+                        feature: "Unlimited Revisions",
+                        description: "Get it exactly right"
+                      },
+                      {
+                        feature: "Priority Support",
+                        description: "Direct access to developers"
+                      },
+                      {
+                        feature: "Advanced Security",
+                        description: "Enterprise-grade protection"
+                      }
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start space-x-3 text-white/80 group-hover:text-white transition-colors duration-200">
+                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5 group-hover:bg-white/10 transition-colors duration-200">
+                          <div className="h-1.5 w-1.5 rounded-full bg-white/60 group-hover:bg-white transition-colors duration-200" />
                         </div>
-                        <span>{feature}</span>
+                        <div>
+                          <div className="font-medium">{item.feature}</div>
+                          <div className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-200">{item.description}</div>
+                        </div>
                       </li>
                     ))}
                   </ul>
                   
                   <Button 
-                    size="lg"
-                    className={`${buttonClasses} w-full py-4 text-lg`}
-                    onClick={handleModalOpen}
+                    className={cn(
+                      buttonClasses,
+                      "w-full py-6 text-lg font-medium group-hover:scale-[1.02] transition-all duration-200"
+                    )}
+                    onClick={() => {
+                      setFormData(prev => ({ ...prev, inquiryType: 'Custom Build' }));
+                      handleModalOpen();
+                    }}
                   >
-                    Get In Touch
+                    Contact Us
                   </Button>
                 </CardContent>
               </Card>
@@ -738,7 +798,10 @@ export function LandingPage() {
       <section className="py-24 text-center bg-black">
         <div className="w-full max-w-[90rem] mx-auto px-4">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white">Ready to Validate Your Idea?</h2>
-          <Button size="lg" className={buttonClasses} onClick={handleModalOpen}>
+          <Button 
+            className={cn(buttonClasses, "text-lg px-8 py-4 mb-24 hover:scale-105 transition-all duration-200")}
+            onClick={handleModalOpen}
+          >
             Get In Touch
           </Button>
         </div>
@@ -791,6 +854,25 @@ export function LandingPage() {
               </div>
 
               <div className="space-y-2">
+                <Label htmlFor="inquiryType" className="text-sm font-medium">
+                  Inquiry Type
+                </Label>
+                <select
+                  id="inquiryType"
+                  name="inquiryType"
+                  className="w-full px-3 py-2 text-base rounded-md border border-input bg-background"
+                  required
+                  value={formData.inquiryType}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Select an option</option>
+                  <option value="General">General Inquiry</option>
+                  <option value="Startup MVP">Startup MVP ($1,999)</option>
+                  <option value="Custom Build">Custom Build</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
                 <Label htmlFor="projectDetails" className="text-sm font-medium">
                   Project Details
                 </Label>
@@ -805,22 +887,25 @@ export function LandingPage() {
                 />
               </div>
 
-              <div className="pt-4">
+              <DialogFooter>
                 <Button
                   type="submit"
-                  className="w-full bg-black text-white hover:bg-white hover:text-black border border-black transition-colors py-5 text-base"
+                  className={cn(
+                    buttonClasses,
+                    "w-full py-4 text-lg font-medium hover:scale-[1.02] transition-all duration-200"
+                  )}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    <div className="flex items-center justify-center gap-2">
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                      <span>Sending...</span>
-                    </div>
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
                   ) : (
                     'Send Message'
                   )}
                 </Button>
-              </div>
+              </DialogFooter>
             </form>
           </div>
         </DialogContent>
