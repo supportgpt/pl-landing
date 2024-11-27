@@ -24,32 +24,37 @@ export default async function handler(
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  const { name, email, projectDetails, inquiryType } = req.body
+  const { name, email, projectDetails, inquiryType, message } = req.body
 
-  if (!name || !email || !projectDetails || !inquiryType) {
+  if (!name || !email || !projectDetails || !inquiryType || !message) {
     return res.status(400).json({ success: false, error: 'Missing required fields' })
   }
 
   try {
-    const subject = `[ProtoLaunch] ${inquiryType} Inquiry from ${name}`
+    // Customize subject based on inquiry type
+    let subject = 'New ProtoLaunch Inquiry';
+    if (inquiryType === 'General') {
+      subject = 'New General Inquiry';
+    } else if (inquiryType === 'High Fidelity Prototype') {
+      subject = 'New High Fidelity Prototype Request ($499)';
+    } else if (inquiryType === 'Startup MVP') {
+      subject = 'New Startup MVP Request ($1,999)';
+    } else if (inquiryType === 'Custom Build') {
+      subject = 'New Custom Build Request';
+    }
 
     const emailContent = `
-New Project Inquiry
-------------------
-
-Contact Information:
-Name: ${name}
-Email: ${email}
-
-Inquiry Type: ${inquiryType}
-
-Project Details:
-${projectDetails}
-
----
-Sent from ProtoLaunch Landing Page
-Time: ${new Date().toLocaleString()}
-`.trim()
+      New inquiry from ProtoLaunch Landing Page
+      
+      Name: ${name}
+      Email: ${email}
+      Inquiry Type: ${inquiryType}
+      Message: ${message}
+      Project Details: ${projectDetails}
+      
+      Sent from: ProtoLaunch Landing Page
+      Time: ${new Date().toLocaleString()}
+    `.trim()
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,

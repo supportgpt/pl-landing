@@ -292,16 +292,6 @@ export function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Full-Stack MVP",
-                description: "Your product built and launched.",
-                icon: <Box className="h-8 w-8 mb-4 text-white" />,
-                points: [
-                  "From concept to production",
-                  "Built for scale",
-                  "Ready for users"
-                ]
-              },
-              {
                 title: "Interactive Prototype",
                 description: "See it work before we build.",
                 icon: <Monitor className="h-8 w-8 mb-4 text-white" />,
@@ -309,6 +299,24 @@ export function LandingPage() {
                   "Test with real users",
                   "Validate your idea",
                   "Iterate quickly"
+                ],
+                action: (
+                  <Button
+                    className={cn(buttonClasses, "text-lg px-8 py-4 w-full hover:scale-105 transition-all duration-200")}
+                    onClick={() => setIsPrototypeModalOpen(true)}
+                  >
+                    Try Interactive Prototype
+                  </Button>
+                )
+              },
+              {
+                title: "Full-Stack MVP",
+                description: "Your product built and launched.",
+                icon: <Box className="h-8 w-8 mb-4 text-white" />,
+                points: [
+                  "From concept to production",
+                  "Built for scale",
+                  "Ready for users"
                 ]
               },
               {
@@ -343,6 +351,7 @@ export function LandingPage() {
                         </li>
                       ))}
                     </ul>
+                    {item.action && <div className="mt-6">{item.action}</div>}
                   </CardContent>
                 </Card>
               </motion.div>
@@ -408,13 +417,6 @@ export function LandingPage() {
                 </motion.div>
               ))}
             </div>
-
-            <Button
-              className={cn(buttonClasses, "text-lg px-8 py-4 hover:scale-105 transition-all duration-200")}
-              onClick={() => setIsPrototypeModalOpen(true)}
-            >
-              Try Interactive Prototype
-            </Button>
           </div>
         </div>
       </section>
@@ -642,10 +644,78 @@ export function LandingPage() {
       <section className="py-32 bg-black scroll-mt-20" id="pricing">
         <div className="w-full max-w-[90rem] mx-auto px-4">
           <div className="flex flex-col items-center justify-center mb-24">
-            <span className="text-white/60 uppercase tracking-wider text-sm font-medium mb-4">Pricing Plans</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">Launch Your MVP in Weeks</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">Validate First, Build Later</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+              <Card className="bg-black border-white/20 border hover:border-white/40 transition-all duration-300 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-4 py-2 text-sm font-semibold">
+                  Validate
+                </div>
+                <CardContent className="p-8">
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold text-white mb-2">High Fidelity Prototype</h3>
+                    <p className="text-white/60">1-week delivery</p>
+                  </div>
+
+                  <div className="flex items-baseline mb-8">
+                    <span className="text-5xl font-bold text-white">$499</span>
+                    <span className="text-white/60 ml-2">flat rate</span>
+                  </div>
+                  
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      {
+                        feature: "Interactive Prototype",
+                        description: "Fully clickable user flows"
+                      },
+                      {
+                        feature: "User Testing Ready",
+                        description: "Perfect for validation"
+                      },
+                      {
+                        feature: "1 Round of Revisions",
+                        description: "Refine the experience"
+                      },
+                      {
+                        feature: "Modern UI Design",
+                        description: "Beautiful, responsive layouts"
+                      },
+                      {
+                        feature: "Handoff Support",
+                        description: "Ready for development"
+                      },
+                      {
+                        feature: "Developer Documentation",
+                        description: "Detailed implementation guide"
+                      }
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start space-x-3 text-white/80 group-hover:text-white transition-colors duration-200">
+                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5 group-hover:bg-white/10 transition-colors duration-200">
+                          <div className="h-1.5 w-1.5 rounded-full bg-white/60 group-hover:bg-white transition-colors duration-200" />
+                        </div>
+                        <div>
+                          <div className="font-medium">{item.feature}</div>
+                          <div className="text-sm text-white/60 group-hover:text-white/80 transition-colors duration-200">{item.description}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    className={cn(
+                      buttonClasses,
+                      "w-full py-6 text-lg font-medium group-hover:scale-[1.02] transition-all duration-200"
+                    )}
+                    onClick={() => {
+                      setFormData(prev => ({ ...prev, inquiryType: 'High Fidelity Prototype' }));
+                      handleModalOpen();
+                    }}
+                  >
+                    Try Risk-Free
+                  </Button>
+                </CardContent>
+              </Card>
+
               <Card className="bg-black border-white/20 border hover:border-white/40 transition-all duration-300 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 bg-white text-black px-4 py-2 text-sm font-semibold">
                   Most Popular
@@ -664,11 +734,11 @@ export function LandingPage() {
                   <ul className="space-y-4 mb-8">
                     {[
                       {
-                        feature: "Interactive Prototype in 1 Week",
-                        description: "Test with real users before building"
+                        feature: "Everything in Prototype",
+                        description: "All prototype features included"
                       },
                       {
-                        feature: "Full MVP in 2 Weeks",
+                        feature: "Full MVP Development",
                         description: "Production-ready codebase"
                       },
                       {
@@ -779,7 +849,7 @@ export function LandingPage() {
                       handleModalOpen();
                     }}
                   >
-                    Contact Us
+                    Get In Touch
                   </Button>
                 </CardContent>
               </Card>
@@ -863,6 +933,7 @@ export function LandingPage() {
                 >
                   <option value="">Select an option</option>
                   <option value="General">General Inquiry</option>
+                  <option value="High Fidelity Prototype">High Fidelity Prototype ($499)</option>
                   <option value="Startup MVP">Startup MVP ($1,999)</option>
                   <option value="Custom Build">Custom Build</option>
                 </select>
@@ -888,7 +959,7 @@ export function LandingPage() {
                   type="submit"
                   className={cn(
                     buttonClasses,
-                    "w-full py-4 text-lg font-medium hover:scale-[1.02] transition-all duration-200"
+                    "w-full py-4 text-lg font-medium group-hover:scale-[1.02] transition-all duration-200"
                   )}
                   disabled={isSubmitting}
                 >
