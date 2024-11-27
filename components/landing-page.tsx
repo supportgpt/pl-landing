@@ -196,7 +196,7 @@ export function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-black">
+      <section className="pt-32 pb-32 bg-black">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -204,19 +204,16 @@ export function LandingPage() {
           className="w-full max-w-[90rem] mx-auto px-4"
         >
           <div className="flex flex-col items-center">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight max-w-4xl mx-auto mb-8 text-white text-center">
-              Transform Your Vision into Reality Before Development
-            </h1>
+            <div className="text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-bold leading-[1.1] md:leading-[1.1] tracking-tight max-w-4xl mx-auto mb-8 text-white text-center">
+              <div>Build Your MVP.</div>
+              <div>Launch in Weeks.</div>
+            </div>
             <Button 
               size="lg" 
-              className={`${buttonClasses} will-change-transform`}
+              className={`${buttonClasses} text-lg px-8 py-4 mb-24 hover:scale-105 transition-all duration-200`}
               onClick={handleModalOpen}
-              style={{
-                transform: 'translateZ(0)', // Hardware acceleration
-                backfaceVisibility: 'hidden'
-              }}
             >
-              Get Started
+              Get In Touch
             </Button>
 
             {/* Prototype Preview */}
@@ -288,39 +285,39 @@ export function LandingPage() {
       <Divider />
 
       {/* What We Deliver */}
-      <section className="py-16 bg-black scroll-mt-20" id="our-services">
+      <section className="py-32 bg-black scroll-mt-20" id="our-services">
         <div className="w-full max-w-[90rem] mx-auto px-4">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-12 text-left text-white">What We Deliver</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-24 text-center text-white">What We Deliver</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "High-Fidelity Prototypes",
-                description: "Experience the impact of a real product without costly development.",
+                title: "Full-Stack MVP",
+                description: "Your product built and launched.",
+                icon: <Box className="h-8 w-8 mb-4 text-white" />,
+                points: [
+                  "From concept to production",
+                  "Built for scale",
+                  "Ready for users"
+                ]
+              },
+              {
+                title: "Interactive Prototype",
+                description: "See it work before we build.",
                 icon: <Monitor className="h-8 w-8 mb-4 text-white" />,
                 points: [
-                  "Engage Stakeholders with tangible prototypes",
-                  "Validate Early and minimise risks",
-                  "Accelerate Buy-In with interactive demos"
+                  "Test with real users",
+                  "Validate your idea",
+                  "Iterate quickly"
                 ]
               },
               {
-                title: "User Flow Designs",
-                description: "Bring your product to life with intuitive, end-to-end user journeys.",
-                icon: <Users className="h-8 w-8 mb-4 text-white" />,
+                title: "Quick Launch",
+                description: "No waiting. Just building.",
+                icon: <Zap className="h-8 w-8 mb-4 text-white" />,
                 points: [
-                  "Map the Journey for smooth user interactions",
-                  "Highlight Key Actions for goal accomplishment",
-                  "Optimize Usability to enhance engagement"
-                ]
-              },
-              {
-                title: "Professional UI Design",
-                description: "Deliver a modern, accessible interface optimized for testing.",
-                icon: <Layout className="h-8 w-8 mb-4 text-white" />,
-                points: [
-                  "Enhance User Appeal with compelling visuals",
-                  "Boost Consistency with unified design language",
-                  "Ensure Accessibility for all users"
+                  "1-week prototype",
+                  "2-week MVP",
+                  "Launch support"
                 ]
               }
             ].map((item, i) => (
@@ -330,17 +327,17 @@ export function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Card className="bg-black border-white border">
-                  <CardContent className="p-6 space-y-4">
-                    <div className="relative">
+                <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 h-full">
+                  <CardContent className="p-8 space-y-6">
+                    <div className="p-3 bg-white/5 rounded-lg w-fit">
                       {item.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                    <p className="text-white">{item.description}</p>
-                    <ul className="space-y-2">
+                    <h3 className="text-2xl font-bold text-white">{item.title}</h3>
+                    <p className="text-white/60">{item.description}</p>
+                    <ul className="space-y-3">
                       {item.points.map((point, j) => (
-                        <li key={j} className="text-sm text-white flex items-center space-x-2">
-                          <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <li key={j} className="text-sm text-white/80 flex items-center space-x-3">
+                          <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                           <span>{point}</span>
                         </li>
                       ))}
@@ -355,139 +352,69 @@ export function LandingPage() {
 
       <Divider />
 
-      {/* What To Expect Section */}
-      <section className="py-24 bg-black scroll-mt-20" id="prototypes">
+      {/* How It Works Section */}
+      <section className="py-32 bg-black scroll-mt-20" id="process">
         <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex flex-col items-center justify-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">What To Expect From Our Prototypes</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl">
-              <div className="bg-black/40 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                  <Users className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">User-Centric Design</h3>
-                <p className="text-gray-400 text-sm">
-                  Intuitive interfaces designed for your target users, ensuring seamless interactions.
-                </p>
-              </div>
-              <div className="bg-black/40 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                  <Settings className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">Functional Flows</h3>
-                <p className="text-gray-400 text-sm">
-                  Complete user journeys with interactive elements and realistic data.
-                </p>
-              </div>
-              <div className="bg-black/40 border border-white/10 rounded-lg p-6 backdrop-blur-sm">
-                <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center mb-4">
-                  <CreditCard className="h-5 w-5 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">Responsive Design</h3>
-                <p className="text-gray-400 text-sm">
-                  Optimized for both desktop and mobile experiences.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-16">
-            {/* Desktop View */}
-            <Button 
-              size="lg"
-              onClick={useCallback(() => {
-                requestAnimationFrame(() => {
-                  setIsPrototypeModalOpen(true)
-                })
-              }, [])}
-              className={cn(
-                "hidden md:inline-flex bg-black text-white border border-white hover:bg-white hover:text-black",
-                "px-8 py-6 text-lg will-change-transform transition-colors duration-200"
-              )}
-            >
-              Try Interactive Demo
-            </Button>
-
-            {/* Mobile View */}
-            <Button 
-              size="lg"
-              disabled
-              className={cn(
-                "md:hidden bg-black text-white/60 border border-white/20 cursor-not-allowed",
-                "px-8 py-6 text-lg"
-              )}
-            >
-              View on Desktop
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* Our Process Section */}
-      <section className="py-24 bg-black scroll-mt-20" id="our-process">
-        <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex flex-col items-center justify-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
-              Our Process - Validating Your SaaS Idea with Confidence
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">How It Works</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full mb-16">
               {[
                 {
-                  step: "Step 1",
-                  title: "Discovery & Strategy",
-                  description: "We start by understanding your vision, goals, and target audience. Through an initial discovery phase, we align on your product's core concept and user expectations, laying the foundation for an effective prototype.",
+                  step: "Week 1",
+                  title: "Prototype",
+                  description: "We build a working prototype to validate your idea with real users.",
                   icon: <Users className="h-6 w-6 text-white" />
                 },
                 {
-                  step: "Step 2",
-                  title: "Building Interactive Prototypes",
-                  description: "We create a fully interactive, high-fidelity prototype of your idea. Unlike static mockups, our prototypes let you experience real user flows, key interactions, and essential functionalities.",
+                  step: "Week 2",
+                  title: "Plan",
+                  description: "Design the architecture and set up development pipeline.",
                   icon: <Layout className="h-6 w-6 text-white" />
                 },
                 {
-                  step: "Step 3",
-                  title: "User Testing & Validation",
-                  description: "With the prototype ready, we help you run user tests to see how your target audience interacts with it. This stage is critical for identifying what works well and where improvements are necessary.",
+                  step: "Week 2-3",
+                  title: "Build",
+                  description: "Develop your MVP with production-ready code.",
                   icon: <Settings className="h-6 w-6 text-white" />
                 },
                 {
-                  step: "Step 4",
-                  title: "Investor-Ready Demos",
-                  description: "Our final prototypes are web-based, fully interactive, and ready to impress. Whether you're meeting with stakeholders or pitching to investors, you'll showcase a realistic, functional demo.",
+                  step: "Week 3",
+                  title: "Launch",
+                  description: "Deploy your MVP and prepare for user growth.",
                   icon: <Share2 className="h-6 w-6 text-white" />
                 }
               ].map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <Card className="bg-black border-white border h-full">
-                    <CardContent className="p-6 space-y-4">
-                      <div className="flex items-center gap-4 mb-2">
-                        <div className="p-2 bg-white/10 rounded-lg">
+                  <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 h-full">
+                    <CardContent className="p-8">
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="p-3 bg-white/5 rounded-lg">
                           {item.icon}
                         </div>
-                        <div className="text-sm font-medium text-white/60">
-                          {item.step}
-                        </div>
+                        <span className="text-sm font-medium text-white/60">{item.step}</span>
                       </div>
-                      <h3 className="text-xl font-bold text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-400 text-sm leading-relaxed">
-                        {item.description}
-                      </p>
+                      <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                      <p className="text-white/80">{item.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
               ))}
             </div>
+
+            <Button
+              size="lg"
+              className={`${buttonClasses} text-lg px-8 py-4 hover:scale-105 transition-all duration-200`}
+              onClick={() => setIsPrototypeModalOpen(true)}
+            >
+              Try Interactive Demo
+            </Button>
           </div>
         </div>
       </section>
@@ -495,19 +422,16 @@ export function LandingPage() {
       <Divider />
 
       {/* Success Stories */}
-      <section className="py-16 scroll-mt-20" id="success-stories">
+      <section className="py-32 bg-black scroll-mt-20" id="success-stories">
         <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-12">
-            <div>
-              <div className="text-sm text-gray-400 mb-2">Featured Success Stories</div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">Success Stories</h2>
-            </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-24">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">Success Stories</h2>
             <div className="flex gap-2 mt-4 sm:mt-0">
               <Button
                 onClick={() => setCurrentStory((prev) => (prev === 0 ? 1 : 0))}
                 variant="outline"
                 size="icon"
-                className={buttonClasses}
+                className={`${buttonClasses} w-10 h-10 p-0`}
               >
                 <ArrowLeft className="h-4 w-4" />
               </Button>
@@ -515,7 +439,7 @@ export function LandingPage() {
                 onClick={() => setCurrentStory((prev) => (prev === 0 ? 1 : 0))}
                 variant="outline"
                 size="icon"
-                className={buttonClasses}
+                className={`${buttonClasses} w-10 h-10 p-0`}
               >
                 <ArrowRight className="h-4 w-4" />
               </Button>
@@ -534,70 +458,70 @@ export function LandingPage() {
               {currentStory === 0 ? (
                 <>
                   <div className="space-y-8">
-                    <Card className="bg-black border-white border">
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-4 text-white">About the Project</h3>
+                    <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-bold mb-4 text-white">About the Project</h3>
                         <p className="text-white mb-4">
                           A leading logistics company needed to validate their warehouse scanning application before development.
                           The project aimed to revolutionize their operations through digital transformation.
                         </p>
-                        <ul className="space-y-2 text-white">
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <ul className="space-y-3 text-white">
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Enterprise-scale scanning solution</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Real-time inventory management</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Multi-warehouse system integration</span>
                           </li>
                         </ul>
                       </CardContent>
                     </Card>
 
-                    <Card className="bg-black border-white border">
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-4 text-white">The Challenge</h3>
+                    <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-bold mb-4 text-white">The Challenge</h3>
                         <p className="text-white mb-4">
                           Before committing to development, several critical aspects needed validation:
                         </p>
-                        <ul className="space-y-2 text-white">
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <ul className="space-y-3 text-white">
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Interface usability in warehouse conditions</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Complex workflow optimization</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Staff training requirements</span>
                           </li>
                         </ul>
                       </CardContent>
                     </Card>
 
-                    <Card className="bg-black border-white border">
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-4 text-white">Our Solution</h3>
+                    <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-bold mb-4 text-white">Our Solution</h3>
                         <p className="text-white mb-4">
                           We delivered a comprehensive prototype package that demonstrated:
                         </p>
-                        <ul className="space-y-2 text-white">
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <ul className="space-y-3 text-white">
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Intuitive scanning interface design</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Streamlined workflow processes</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Real-time inventory updates</span>
                           </li>
                         </ul>
@@ -623,69 +547,69 @@ export function LandingPage() {
               ) : (
                 <>
                   <div className="space-y-8">
-                    <Card className="bg-black border-white border">
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-4 text-white">About SupportGPT</h3>
+                    <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-bold mb-4 text-white">About SupportGPT</h3>
                         <p className="text-white mb-4">
                           A Shopify app that transforms customer support through AI-powered email assistance. The team needed to validate their innovative concept before development.
                         </p>
-                        <ul className="space-y-2 text-white">
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <ul className="space-y-3 text-white">
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Smart email response generation</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Customizable AI training system</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Automated support workflow</span>
                           </li>
                         </ul>
                       </CardContent>
                     </Card>
 
-                    <Card className="bg-black border-white border">
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-4 text-white">The Challenge</h3>
+                    <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-bold mb-4 text-white">The Challenge</h3>
                         <p className="text-white mb-4">
                           Before development, the team needed to validate several key aspects:
                         </p>
-                        <ul className="space-y-2 text-white">
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <ul className="space-y-3 text-white">
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>AI response accuracy and relevance</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>User-friendly training interface</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Seamless Shopify integration</span>
                           </li>
                         </ul>
                       </CardContent>
                     </Card>
 
-                    <Card className="bg-black border-white border">
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-4 text-white">Our Solution</h3>
+                    <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200">
+                      <CardContent className="p-8">
+                        <h3 className="text-2xl font-bold mb-4 text-white">Our Solution</h3>
                         <p className="text-white mb-4">
                           We created a comprehensive prototype that demonstrated:
                         </p>
-                        <ul className="space-y-2 text-white">
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                        <ul className="space-y-3 text-white">
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Intuitive email management interface</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Simple AI training workflow</span>
                           </li>
-                          <li className="flex items-center space-x-2">
-                            <div className="h-1.5 w-1.5 rounded-full bg-white" />
+                          <li className="flex items-center space-x-3">
+                            <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
                             <span>Efficient response generation system</span>
                           </li>
                         </ul>
@@ -711,6 +635,100 @@ export function LandingPage() {
               )}
             </motion.div>
           </AnimatePresence>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* Pricing Section */}
+      <section className="py-32 bg-black scroll-mt-20" id="pricing">
+        <div className="w-full max-w-[90rem] mx-auto px-4">
+          <div className="flex flex-col items-center justify-center mb-24">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">Simple, Transparent Pricing</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+              <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-white text-black px-4 py-2 text-sm font-semibold">
+                  Standard
+                </div>
+                <CardContent className="p-8">
+                  <div className="flex items-baseline mb-8">
+                    <span className="text-5xl font-bold text-white">$1,999</span>
+                    <span className="text-white/60 ml-2 text-lg">flat rate</span>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-8">MVP Package</h3>
+                  
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      "1-week interactive prototype",
+                      "2-week MVP development",
+                      "Production deployment",
+                      "2 rounds of revisions",
+                      "Launch support",
+                      "Infrastructure setup"
+                    ].map((feature, i) => (
+                      <li key={i} className="flex items-start space-x-3 text-white/80">
+                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5">
+                          <div className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                        </div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    size="lg"
+                    className={`${buttonClasses} w-full py-4 text-lg`}
+                    onClick={handleModalOpen}
+                  >
+                    Get In Touch
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-white/10 text-white px-4 py-2 text-sm font-semibold">
+                  Enterprise
+                </div>
+                <CardContent className="p-8">
+                  <div className="flex items-baseline mb-8">
+                    <span className="text-5xl font-bold text-white">Custom</span>
+                    <span className="text-white/60 ml-2 text-lg">build</span>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-8">Complex Projects</h3>
+                  
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      "Everything in MVP Package",
+                      "Custom architecture",
+                      "Third-party integrations",
+                      "Flexible timeline",
+                      "Unlimited revisions",
+                      "Priority support",
+                      "Advanced security"
+                    ].map((feature, i) => (
+                      <li key={i} className="flex items-start space-x-3 text-white/80">
+                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5">
+                          <div className="h-1.5 w-1.5 rounded-full bg-white/60" />
+                        </div>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    size="lg"
+                    className={`${buttonClasses} w-full py-4 text-lg`}
+                    onClick={handleModalOpen}
+                  >
+                    Get In Touch
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
         </div>
       </section>
 
