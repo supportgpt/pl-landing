@@ -88,7 +88,7 @@ export function LandingPage() {
   }, [])
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target
     setFormData(prev => ({
@@ -860,7 +860,7 @@ export function LandingPage() {
                 <select
                   id="inquiryType"
                   name="inquiryType"
-                  className="w-full px-3 py-2 text-base rounded-md border border-input bg-background"
+                  className="w-full px-3 py-2 text-base rounded-md border border-white/20 bg-black text-white hover:border-white/40 transition-colors duration-200"
                   required
                   value={formData.inquiryType}
                   onChange={handleInputChange}
