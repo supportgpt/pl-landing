@@ -5,13 +5,20 @@ import type { EmailData, EmailResponse } from '@/types/email'
 // Initialize Resend with API key
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Define recipient email
-const RECIPIENT_EMAIL = 'your-email@example.com' // Replace with your email
+// Get recipient email from environment variables
+const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL
 
 export async function POST(request: Request) {
   if (!process.env.RESEND_API_KEY) {
     return NextResponse.json<EmailResponse>(
       { success: false, error: 'RESEND_API_KEY is not configured' },
+      { status: 500 }
+    )
+  }
+
+  if (!RECIPIENT_EMAIL) {
+    return NextResponse.json<EmailResponse>(
+      { success: false, error: 'RECIPIENT_EMAIL is not configured' },
       { status: 500 }
     )
   }
