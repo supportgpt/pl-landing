@@ -413,7 +413,7 @@ export function LandingPage() {
               className={cn(buttonClasses, "text-lg px-8 py-4 hover:scale-105 transition-all duration-200")}
               onClick={() => setIsPrototypeModalOpen(true)}
             >
-              Try Interactive Demo
+              Try Interactive Prototype
             </Button>
           </div>
         </div>
