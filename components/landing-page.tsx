@@ -74,13 +74,6 @@ export function LandingPage() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentStory((prev) => (prev === 0 ? 1 : 0))
-    }, 10000)
-    return () => clearInterval(timer)
-  }, [])
-
   const handleModalOpen = useCallback(() => {
     requestAnimationFrame(() => {
       setIsModalOpen(true)
@@ -762,10 +755,6 @@ export function LandingPage() {
                       {
                         feature: "Priority Support",
                         description: "Direct access to developers"
-                      },
-                      {
-                        feature: "Advanced Security",
-                        description: "Enterprise-grade protection"
                       }
                     ].map((item, i) => (
                       <li key={i} className="flex items-start space-x-3 text-white/80 group-hover:text-white transition-colors duration-200">
