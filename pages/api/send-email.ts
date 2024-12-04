@@ -6,6 +6,13 @@ type ResponseData = {
   error?: string
 }
 
+// Validate email format
+const isValidEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
+
+// Initialize email transporter
 const transporter = nodemailer.createTransport({
   host: 'mail.privateemail.com',
   port: 465,
@@ -20,53 +27,55 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
+  // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Method not allowed' })
   }
 
-  const { name, email, projectDetails, inquiryType, message } = req.body
+  // Validate environment variables
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.error('Missing email configuration')
+    return res.status(500).json({ success: false, error: 'Server configuration error' })
+  }
 
-  if (!name || !email || !projectDetails || !inquiryType || !message) {
+  const { name, email, projectDetails, subject } = req.body
+
+  // Validate required fields
+  if (!name || !email || !projectDetails) {
     return res.status(400).json({ success: false, error: 'Missing required fields' })
   }
 
-  try {
-    // Customize subject based on inquiry type
-    let subject = 'New ProtoLaunch Inquiry';
-    if (inquiryType === 'General') {
-      subject = 'New General Inquiry';
-    } else if (inquiryType === 'High Fidelity Prototype') {
-      subject = 'New High Fidelity Prototype Request ($499)';
-    } else if (inquiryType === 'Startup MVP') {
-      subject = 'New Startup MVP Request ($1,999)';
-    } else if (inquiryType === 'Custom Build') {
-      subject = 'New Custom Build Request';
-    }
+  // Validate email format
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ success: false, error: 'Invalid email format' })
+  }
 
+  try {
     const emailContent = `
-      New inquiry from ProtoLaunch Landing Page
+      New Project Inquiry
       
       Name: ${name}
       Email: ${email}
-      Inquiry Type: ${inquiryType}
-      Message: ${message}
-      Project Details: ${projectDetails}
+      Project Details:
+      ${projectDetails}
       
-      Sent from: ProtoLaunch Landing Page
-      Time: ${new Date().toLocaleString()}
+      Sent: ${new Date().toISOString()}
     `.trim()
 
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
-      subject: subject,
+      subject: subject || `New Project Inquiry from ${name}`,
       text: emailContent,
       replyTo: email
     })
 
-    res.status(200).json({ success: true })
+    return res.status(200).json({ success: true })
   } catch (error) {
     console.error('Email error:', error)
-    res.status(500).json({ success: false, error: 'Failed to send email' })
+    return res.status(500).json({ 
+      success: false, 
+      error: 'Failed to send email. Please try again later.'
+    })
   }
 }
