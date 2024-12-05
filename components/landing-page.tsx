@@ -289,7 +289,7 @@ export function LandingPage() {
               {
                 title: "Expert Development",
                 description: "Technical excellence at every step",
-                icon: <Box className="h-8 w-8 mb-4 text-white" />,
+                icon: <Box className="h-6 w-6 text-white" />,
                 points: [
                   "Modern tech stack",
                   "Scalable architecture",
@@ -299,7 +299,7 @@ export function LandingPage() {
               {
                 title: "Launch-Ready MVP",
                 description: "Built for real-world success",
-                icon: <Zap className="h-8 w-8 mb-4 text-white" />,
+                icon: <Zap className="h-6 w-6 text-white" />,
                 points: [
                   "Production deployment",
                   "Essential features only",
@@ -309,7 +309,7 @@ export function LandingPage() {
               {
                 title: "True Partnership",
                 description: "Aligned for long-term success",
-                icon: <Users className="h-8 w-8 mb-4 text-white" />,
+                icon: <Users className="h-6 w-6 text-white" />,
                 points: [
                   "Zero upfront costs",
                   "Equity-based model",
@@ -325,7 +325,7 @@ export function LandingPage() {
               >
                 <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 h-full">
                   <CardContent className="p-8 space-y-6">
-                    <div className="p-3 bg-white/5 rounded-lg w-fit">
+                    <div className="p-3 bg-white/5 rounded-lg w-fit mb-6">
                       {item.icon}
                     </div>
                     <h3 className="text-2xl font-bold text-white">{item.title}</h3>
