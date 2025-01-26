@@ -517,24 +517,24 @@ export function LandingPage() {
       <Divider />
 
       {/* CTA Section */}
-        <section className="py-40 text-center">
+        <section className="py-32 text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-10 text-white">Let's Build Your Store</h2>
-            <p className="text-white text-xl mb-32 leading-relaxed">Share your vision, and we'll help bring it to life.</p>
-            <div className="pt-4">
-          <Button 
-                className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-110 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
-            onClick={handleModalOpen}
-          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">Let's Build Your Store</h2>
+            <p className="text-white text-xl mb-16 leading-relaxed">Share your vision, and we'll help bring it to life.</p>
+            <div>
+              <Button 
+                className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
+                onClick={handleModalOpen}
+              >
                 Start Your Project
-          </Button>
+              </Button>
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
 
         {/* Contact Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 h-[95vh] sm:h-auto overflow-y-auto">
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] sm:h-auto overflow-y-auto mx-auto">
             <DialogHeader className="space-y-3 mb-4">
               <DialogTitle className="text-xl sm:text-2xl font-bold text-black">Tell Us About Your Project</DialogTitle>
               <DialogDescription className="text-gray-600 text-base sm:text-lg">
@@ -544,66 +544,70 @@ export function LandingPage() {
             <form onSubmit={handleModalSubmit} className="space-y-4">
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="name" className="text-gray-700 text-sm">Name</Label>
+                  <Label htmlFor="name" className="text-gray-700 text-sm block mb-1">Name</Label>
                   <Input
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 mt-1"
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
                     placeholder="Your name"
+                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email" className="text-gray-700 text-sm">Email</Label>
+                  <Label htmlFor="email" className="text-gray-700 text-sm block mb-1">Email</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 mt-1"
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
                     placeholder="your@email.com"
+                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="storeUrl" className="text-gray-700 text-sm">Existing Shopify Store URL (Optional)</Label>
+                  <Label htmlFor="storeUrl" className="text-gray-700 text-sm block mb-1">Existing Shopify Store URL (Optional)</Label>
                   <Input
                     id="storeUrl"
                     name="storeUrl"
                     value={formData.storeUrl}
                     onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 mt-1"
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
                     placeholder="your-store.myshopify.com"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="businessType" className="text-gray-700 text-sm">Business Type</Label>
+                  <Label htmlFor="businessType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
                   <Input
                     id="businessType"
                     name="businessType"
                     value={formData.businessType}
                     onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 mt-1"
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
                     placeholder="e.g. Fashion, Electronics, etc."
+                    required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="projectDetails" className="text-gray-700 text-sm">Project Details</Label>
+                  <Label htmlFor="projectDetails" className="text-gray-700 text-sm block mb-1">Project Details</Label>
                   <Textarea
                     id="projectDetails"
                     name="projectDetails"
                     value={formData.projectDetails}
                     onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl mt-1"
+                    className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl w-full resize-none"
                     placeholder="Tell us about your project requirements..."
+                    required
                   />
                 </div>
               </div>
-              <DialogFooter className="mt-6 sm:mt-8">
+              <DialogFooter className="mt-6">
                 <Button 
                   type="submit" 
-                  className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-base sm:text-lg py-4 sm:py-6")}
+                  className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-base sm:text-lg py-4")}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -617,6 +621,12 @@ export function LandingPage() {
                 </Button>
               </DialogFooter>
             </form>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute right-4 top-4 rounded-full p-2 text-gray-400 hover:text-gray-600"
+            >
+              <X className="h-5 w-5" />
+            </button>
           </DialogContent>
         </Dialog>
       </div>
