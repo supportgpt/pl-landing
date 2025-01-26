@@ -582,15 +582,7 @@ export function LandingPage() {
                       </div>
                     </div>
                     <p className="text-white/90 text-lg mb-6">{app.description}</p>
-                    <ul className="grid grid-cols-2 gap-3 mb-8 mt-6">
-                      {app.features.map((feature, j) => (
-                        <li key={j} className="flex items-center gap-2 text-white/80">
-                          <div className="h-1.5 w-1.5 rounded-full bg-purple-400" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-auto">
+                    <div className="mt-8">
                       <Link 
                         href={app.url}
                         target="_blank"
