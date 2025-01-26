@@ -407,11 +407,11 @@ export function LandingPage() {
                         <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                       </div>
                       <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
-                      <div className="flex flex-wrap gap-3 mt-2">
+                      <div className="flex flex-wrap gap-2">
                         {item.tags.map((tag, j) => (
                           <span 
                             key={j}
-                            className="text-sm px-5 py-2 rounded-full bg-white/10 text-white/90"
+                            className="inline-block text-sm px-3 py-1 rounded-full bg-white/10 text-white/90 whitespace-nowrap"
                           >
                             {tag}
                           </span>
