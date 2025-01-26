@@ -130,6 +130,37 @@ const expertiseList = [
   "Custom App Development"
 ] as const
 
+const appShowcase = [
+  {
+    title: "Pretty Sales Pop Up",
+    description: "Build social proof and boost sales with real-time cart and purchase notifications. Display recent live activity from your store with unique sales popups.",
+    image: "/images/apps/sales-popup.png",
+    url: "https://apps.shopify.com/pretty-sales-popup",
+    rating: "4.5",
+    reviews: "33",
+    features: [
+      "Real-time notifications",
+      "Customizable templates",
+      "Mobile responsive",
+      "Live activity tracking"
+    ]
+  },
+  {
+    title: "Pretty Comparison Tables",
+    description: "Create stunning comparison tables for your products and collections. Help customers make informed decisions with visual, dynamic comparisons.",
+    image: "/images/apps/comparison-tables.png",
+    url: "https://apps.shopify.com/pretty-comparisons",
+    rating: "3.7",
+    reviews: "18",
+    features: [
+      "Visual comparisons",
+      "Dynamic tables",
+      "Mobile friendly",
+      "Custom templates"
+    ]
+  }
+] as const
+
 export function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -394,51 +425,6 @@ export function LandingPage() {
 
         <Divider />
 
-        {/* Portfolio Section */}
-        <section id="portfolio" className="py-32">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">Featured Client Work</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {portfolioItems.map((item, i) => (
-                <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                  <CardContent className="p-0">
-                    <div className="relative h-64 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                      <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={600}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <Link 
-                        href={`https://${item.url}`} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
-                      >
-                        Visit Store
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    </div>
-                    <div className="p-8">
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                      </div>
-                      <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <Divider />
-
         {/* Expertise Section */}
         <section id="expertise" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
@@ -477,7 +463,7 @@ export function LandingPage() {
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl">
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold mb-8 text-white">Our Expertise</h3>
-                    <ul className="space-y-6">
+                    <ul className="space-y-6 mt-6">
                       {expertiseList.map((item, i) => (
                         <li key={i} className="flex items-center gap-4 text-lg">
                           <div className="h-2 w-2 rounded-full bg-purple-400" />
@@ -518,113 +504,220 @@ export function LandingPage() {
 
       <Divider />
 
-      {/* CTA Section */}
-        <section className="py-32 text-center">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-20 text-white">Let's Build Your Store</h2>
-            <div>
-              <Button 
-                className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
-                onClick={handleModalOpen}
-              >
-                Start Your Project
-              </Button>
-            </div>
+      {/* Portfolio Section */}
+      <section id="portfolio" className="py-32">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16 text-white">Featured Client Stores</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {portfolioItems.map((item, i) => (
+              <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                <CardContent className="p-0">
+                  <div className="relative h-64 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                    <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={600}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <Link 
+                      href={`https://${item.url}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
+                    >
+                      Visit Store
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                  <div className="p-8">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                    </div>
+                    <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Contact Modal */}
-        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] overflow-y-auto top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] fixed">
-            <DialogHeader className="space-y-3 mb-4">
-              <DialogTitle className="text-xl sm:text-2xl font-bold text-black">Tell Us About Your Project</DialogTitle>
-              <DialogDescription className="text-gray-600 text-base sm:text-lg">
-                We'll get back to you within 24 hours to discuss your needs.
-              </DialogDescription>
-            </DialogHeader>
-            <form onSubmit={handleModalSubmit} className="space-y-4">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="name" className="text-gray-700 text-sm block mb-1">Name</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email" className="text-gray-700 text-sm block mb-1">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="your@email.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="storeUrl" className="text-gray-700 text-sm block mb-1">Existing Shopify Store URL (Optional)</Label>
-                  <Input
-                    id="storeUrl"
-                    name="storeUrl"
-                    value={formData.storeUrl}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="your-store.myshopify.com"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="businessType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
-                  <Input
-                    id="businessType"
-                    name="businessType"
-                    value={formData.businessType}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="e.g. Fashion, Electronics, etc."
-                    required
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="projectDetails" className="text-gray-700 text-sm block mb-1">Project Details</Label>
-                  <Textarea
-                    id="projectDetails"
-                    name="projectDetails"
-                    value={formData.projectDetails}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl w-full resize-none"
-                    placeholder="Tell us about your project requirements..."
-                    required
-                  />
-                </div>
+      <Divider />
+
+      {/* Apps Section */}
+      <section id="apps" className="py-32">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16 text-white">Featured Client Apps</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {appShowcase.map((app, i) => (
+              <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                <CardContent className="p-0">
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                    <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                      <Image
+                        src={app.image}
+                        alt={app.title}
+                        width={600}
+                        height={400}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="p-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-2xl font-semibold text-white">{app.title}</h3>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center">
+                          <span className="text-yellow-400">★</span>
+                          <span className="text-white ml-1">{app.rating}</span>
+                        </div>
+                        <span className="text-white/60">({app.reviews})</span>
+                      </div>
+                    </div>
+                    <p className="text-white/90 text-lg mb-6">{app.description}</p>
+                    <ul className="grid grid-cols-2 gap-3 mb-8 mt-6">
+                      {app.features.map((feature, j) => (
+                        <li key={j} className="flex items-center gap-2 text-white/80">
+                          <div className="h-1.5 w-1.5 rounded-full bg-purple-400" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-auto">
+                      <Link 
+                        href={app.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors duration-200"
+                      >
+                        View in Shopify App Store
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* CTA Section */}
+      <section className="py-32 text-center">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-20 text-white">Let's Build Your Store</h2>
+          <div>
+            <Button 
+              className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
+              onClick={handleModalOpen}
+            >
+              Start Your Project
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] overflow-y-auto top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] fixed">
+          <DialogHeader className="space-y-3 mb-4">
+            <DialogTitle className="text-xl sm:text-2xl font-bold text-black">Tell Us About Your Project</DialogTitle>
+            <DialogDescription className="text-gray-600 text-base sm:text-lg">
+              We'll get back to you within 24 hours to discuss your needs.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleModalSubmit} className="space-y-4">
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="name" className="text-gray-700 text-sm block mb-1">Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                  placeholder="Your name"
+                  required
+                />
               </div>
-              <DialogFooter className="mt-6">
-                <Button 
-                  type="submit" 
-                  className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-base sm:text-lg py-4")}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
-                </Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
-        </Dialog>
-      </div>
-    </main>
-  )
+              <div>
+                <Label htmlFor="email" className="text-gray-700 text-sm block mb-1">Email</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="storeUrl" className="text-gray-700 text-sm block mb-1">Existing Shopify Store URL (Optional)</Label>
+                <Input
+                  id="storeUrl"
+                  name="storeUrl"
+                  value={formData.storeUrl}
+                  onChange={handleInputChange}
+                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                  placeholder="your-store.myshopify.com"
+                />
+              </div>
+              <div>
+                <Label htmlFor="businessType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
+                <Input
+                  id="businessType"
+                  name="businessType"
+                  value={formData.businessType}
+                  onChange={handleInputChange}
+                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                  placeholder="e.g. Fashion, Electronics, etc."
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="projectDetails" className="text-gray-700 text-sm block mb-1">Project Details</Label>
+                <Textarea
+                  id="projectDetails"
+                  name="projectDetails"
+                  value={formData.projectDetails}
+                  onChange={handleInputChange}
+                  className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl w-full resize-none"
+                  placeholder="Tell us about your project requirements..."
+                  required
+                />
+              </div>
+            </div>
+            <DialogFooter className="mt-6">
+              <Button 
+                type="submit" 
+                className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-base sm:text-lg py-4")}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  'Send Message'
+                )}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
+  </main>
+)
 }
