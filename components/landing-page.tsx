@@ -97,7 +97,38 @@ const portfolioItems = [
     image: "/images/portfolio/sophieratner.png",
     url: "sophieratner.com"
   }
-]
+] as const
+
+const processSteps = [
+  {
+    title: "Discovery",
+    description: "Understanding your vision and requirements.",
+    icon: <Mail className="h-8 w-8 text-purple-400" />,
+  },
+  {
+    title: "Planning",
+    description: "Creating a clear roadmap for development.",
+    icon: <Settings className="h-8 w-8 text-blue-400" />,
+  },
+  {
+    title: "Development",
+    description: "Building your solution with regular updates.",
+    icon: <Box className="h-8 w-8 text-green-400" />,
+  },
+  {
+    title: "Launch",
+    description: "Deploying and supporting your store.",
+    icon: <Rocket className="h-8 w-8 text-yellow-400" />,
+  }
+] as const
+
+const expertiseList = [
+  "Custom Shopify Theme Development",
+  "Shopify Plus Development",
+  "E-commerce Strategy",
+  "Performance Optimization",
+  "Custom App Development"
+] as const
 
 export function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -117,7 +148,7 @@ export function LandingPage() {
     })
   }, [])
 
-  const handleInputChange = (
+  const handleInputChange = useCallback((
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
@@ -125,9 +156,9 @@ export function LandingPage() {
       ...prev,
       [name]: value
     }))
-  }
+  }, [])
 
-  const handleModalSubmit = async (e: FormEvent) => {
+  const handleModalSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     
@@ -202,9 +233,7 @@ export function LandingPage() {
   return (
     <main className="min-h-screen bg-black">
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap');
         body {
-          font-family: 'Lexend Deca', sans-serif;
           overflow-x: hidden;
           background: black;
         }
@@ -449,13 +478,7 @@ export function LandingPage() {
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold mb-8 text-white">Our Expertise</h3>
                     <ul className="space-y-6">
-                      {[
-                        "Custom Shopify Theme Development",
-                        "Shopify Plus Development",
-                        "E-commerce Strategy",
-                        "Performance Optimization",
-                        "Custom App Development"
-                      ].map((item, i) => (
+                      {expertiseList.map((item, i) => (
                         <li key={i} className="flex items-center gap-4 text-lg">
                           <div className="h-2 w-2 rounded-full bg-purple-400" />
                           <span className="text-white">{item}</span>
@@ -476,28 +499,7 @@ export function LandingPage() {
           <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-4xl font-bold text-center mb-16 text-white">Our Process</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                {
-                  title: "Discovery",
-                  description: "Understanding your vision and requirements.",
-                  icon: <Mail className="h-8 w-8 text-purple-400" />,
-                },
-                {
-                  title: "Planning",
-                  description: "Creating a clear roadmap for development.",
-                  icon: <Settings className="h-8 w-8 text-blue-400" />,
-                },
-                {
-                  title: "Development",
-                  description: "Building your solution with regular updates.",
-                  icon: <Box className="h-8 w-8 text-green-400" />,
-                },
-                {
-                  title: "Launch",
-                  description: "Deploying and supporting your store.",
-                  icon: <Rocket className="h-8 w-8 text-yellow-400" />,
-                }
-              ].map((item, i) => (
+              {processSteps.map((item, i) => (
                 <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
                     <CardContent className="p-8">
                     <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-purple-500/10">

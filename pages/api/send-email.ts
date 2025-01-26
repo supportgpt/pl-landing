@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
+import { validateEmail } from '@/lib/utils'
 
 interface EmailData {
   name: string
@@ -7,12 +8,17 @@ interface EmailData {
   projectDetails: string
   storeUrl?: string
   businessType: string
-  subject: string
+  subject?: string
+}
+
+interface ApiResponse {
+  message: string
+  error?: string
 }
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<ApiResponse>
 ) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' })
@@ -21,7 +27,10 @@ export default async function handler(
   // Validate environment variables
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
     console.error('Missing email configuration')
-    return res.status(500).json({ message: 'Server configuration error' })
+    return res.status(500).json({ 
+      message: 'Server configuration error',
+      error: 'Missing email configuration'
+    })
   }
 
   try {
@@ -36,7 +45,18 @@ export default async function handler(
 
     // Validate required fields
     if (!name || !email || !projectDetails || !businessType) {
-      return res.status(400).json({ message: 'Required fields missing' })
+      return res.status(400).json({ 
+        message: 'Required fields missing',
+        error: 'Please fill in all required fields'
+      })
+    }
+
+    // Validate email format
+    if (!validateEmail(email)) {
+      return res.status(400).json({ 
+        message: 'Invalid email format',
+        error: 'Please provide a valid email address'
+      })
     }
 
     // Create email transporter
@@ -46,7 +66,7 @@ export default async function handler(
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS // This should be an App Password generated from your Google Account
+        pass: process.env.EMAIL_PASS
       }
     })
 
@@ -80,7 +100,7 @@ export default async function handler(
             <p style="margin: 10px 0;"><strong>Name:</strong> ${name}</p>
             <p style="margin: 10px 0;"><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
             <p style="margin: 10px 0;"><strong>Business Type:</strong> ${businessType}</p>
-            ${storeUrl ? `<p style="margin: 10px 0;"><strong>Existing Store:</strong> <a href="https://${storeUrl}" target="_blank">${storeUrl}</a></p>` : ''}
+            ${storeUrl ? `<p style="margin: 10px 0;"><strong>Existing Store:</strong> <a href="https://${storeUrl}" target="_blank" rel="noopener noreferrer">${storeUrl}</a></p>` : ''}
           </div>
 
           <div style="margin: 20px 0;">
@@ -100,6 +120,9 @@ export default async function handler(
     res.status(200).json({ message: 'Email sent successfully' })
   } catch (error) {
     console.error('Email sending error:', error)
-    res.status(500).json({ message: 'Failed to send email' })
+    res.status(500).json({ 
+      message: 'Failed to send email',
+      error: error instanceof Error ? error.message : 'Unknown error occurred'
+    })
   }
 }
