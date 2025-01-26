@@ -41,12 +41,12 @@ export default async function handler(
 
     // Create email transporter
     const transporter = nodemailer.createTransport({
-      host: 'mail.privateemail.com',
+      host: 'smtp.gmail.com',
       port: 465,
       secure: true,
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        pass: process.env.EMAIL_PASS // This should be an App Password generated from your Google Account
       }
     })
 

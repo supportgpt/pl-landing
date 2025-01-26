@@ -65,43 +65,37 @@ const portfolioItems = [
     title: "Fair Harbor Clothing",
     description: "Sustainable swimwear brand with advanced product customization and eco-friendly focus.",
     image: "/images/portfolio/fairharbor.png",
-    url: "fairharborclothing.com",
-    tags: ["Sustainability", "Custom Collections", "Product Quiz"]
+    url: "fairharborclothing.com"
   },
   {
     title: "Joon Haircare",
     description: "Premium hair care brand with subscription model and personalized recommendations.",
     image: "/images/portfolio/joon.png",
-    url: "joonhaircare.com",
-    tags: ["Subscriptions", "Product Quiz", "Custom Theme"]
+    url: "joonhaircare.com"
   },
   {
     title: "Diaspora Co.",
     description: "Direct-to-consumer spice company with unique storytelling and ethical sourcing.",
     image: "/images/portfolio/diaspora.png",
-    url: "diasporaco.com",
-    tags: ["D2C", "Global Commerce", "Story-driven"]
+    url: "diasporaco.com"
   },
   {
     title: "Loops Beauty",
     description: "Modern skincare brand with innovative product presentation and mobile-first design.",
     image: "/images/portfolio/loops.png",
-    url: "loopsbeauty.com",
-    tags: ["Beauty", "Mobile-first", "Custom UX"]
+    url: "loopsbeauty.com"
   },
   {
     title: "Juice Press",
     description: "Multi-location juice brand with complex inventory and order management.",
     image: "/images/portfolio/juicepress.png",
-    url: "juicepress.com",
-    tags: ["Food & Beverage", "Multi-location", "Inventory Sync"]
+    url: "juicepress.com"
   },
   {
     title: "Sophie Ratner",
     description: "Luxury jewelry brand with 3D product visualization and custom engraving.",
     image: "/images/portfolio/sophieratner.png",
-    url: "sophieratner.com",
-    tags: ["Luxury", "3D Preview", "Customization"]
+    url: "sophieratner.com"
   }
 ]
 
@@ -407,16 +401,6 @@ export function LandingPage() {
                         <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                       </div>
                       <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {item.tags.map((tag, j) => (
-                          <span 
-                            key={j}
-                            className="inline-block text-sm px-3 py-1 rounded-full bg-white/10 text-white/90 whitespace-nowrap"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
