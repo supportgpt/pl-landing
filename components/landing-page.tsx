@@ -38,6 +38,8 @@ interface FormData {
   email: string
   name: string
   projectDetails: string
+  storeUrl?: string
+  businessType: string
 }
 
 interface FormEvent extends React.FormEvent<HTMLFormElement> {
@@ -58,13 +60,60 @@ const Divider = () => (
   </div>
 )
 
+const portfolioItems = [
+  {
+    title: "Fair Harbor Clothing",
+    description: "Sustainable swimwear brand with advanced product customization and eco-friendly focus.",
+    image: "/images/portfolio/fairharbor.png",
+    url: "fairharborclothing.com",
+    tags: ["Sustainability", "Custom Collections", "Product Quiz"]
+  },
+  {
+    title: "Joon Haircare",
+    description: "Premium hair care brand with subscription model and personalized recommendations.",
+    image: "/images/portfolio/joon.png",
+    url: "joonhaircare.com",
+    tags: ["Subscriptions", "Product Quiz", "Custom Theme"]
+  },
+  {
+    title: "Diaspora Co.",
+    description: "Direct-to-consumer spice company with unique storytelling and ethical sourcing.",
+    image: "/images/portfolio/diaspora.png",
+    url: "diasporaco.com",
+    tags: ["D2C", "Global Commerce", "Story-driven"]
+  },
+  {
+    title: "Loops Beauty",
+    description: "Modern skincare brand with innovative product presentation and mobile-first design.",
+    image: "/images/portfolio/loops.png",
+    url: "loopsbeauty.com",
+    tags: ["Beauty", "Mobile-first", "Custom UX"]
+  },
+  {
+    title: "Juice Press",
+    description: "Multi-location juice brand with complex inventory and order management.",
+    image: "/images/portfolio/juicepress.png",
+    url: "juicepress.com",
+    tags: ["Food & Beverage", "Multi-location", "Inventory Sync"]
+  },
+  {
+    title: "Sophie Ratner",
+    description: "Luxury jewelry brand with 3D product visualization and custom engraving.",
+    image: "/images/portfolio/sophieratner.png",
+    url: "sophieratner.com",
+    tags: ["Luxury", "3D Preview", "Customization"]
+  }
+]
+
 export function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [formData, setFormData] = useState<FormData>({
     email: '',
     name: '',
-    projectDetails: ''
+    projectDetails: '',
+    storeUrl: '',
+    businessType: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -88,7 +137,7 @@ export function LandingPage() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    if (!formData.email || !formData.name || !formData.projectDetails) {
+    if (!formData.email || !formData.name || !formData.projectDetails || !formData.businessType) {
       toast.error('Please fill in all required fields')
       setIsSubmitting(false)
       return
@@ -102,7 +151,7 @@ export function LandingPage() {
         },
         body: JSON.stringify({
           ...formData,
-          subject: `New Project Inquiry from ${formData.name}`
+          subject: `New Shopify Project Inquiry from ${formData.name}`
         }),
       })
 
@@ -114,7 +163,9 @@ export function LandingPage() {
       setFormData({
         email: '',
         name: '',
-        projectDetails: ''
+        projectDetails: '',
+        storeUrl: '',
+        businessType: ''
       })
       setIsModalOpen(false)
     } catch (error) {
@@ -150,7 +201,9 @@ export function LandingPage() {
     }
   }, [])
 
-  const buttonClasses = "bg-black text-white border border-white hover:bg-white hover:text-black transition-colors duration-200"
+  const buttonClasses = "rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+  const primaryButtonClasses = cn(buttonClasses, "bg-white text-black hover:bg-white/90")
+  const secondaryButtonClasses = cn(buttonClasses, "bg-white/10 text-white hover:bg-white/20 border border-white/20")
 
   return (
     <main className="min-h-screen bg-black">
@@ -159,42 +212,13 @@ export function LandingPage() {
         body {
           font-family: 'Lexend Deca', sans-serif;
           overflow-x: hidden;
+          background: black;
         }
       `}</style>
       <Toaster position="top-center" />
       
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
-        <div className="flex items-center justify-between h-16 px-4 max-w-[90rem] mx-auto">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/images/protolaunch.png"
-              alt="Protolaunch Logo"
-              width={120}
-              height={40}
-              className="h-8 w-auto sm:h-10"
-            />
-          </Link>
-          
-          {/* Navigation */}
-          <Navigation onNavigate={handleNavigation} />
-
-          {/* Get in Touch Button */}
-          <Button 
-            className={cn(buttonClasses, "w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-2")} 
-            onClick={handleModalOpen}
-            aria-label="Open contact form"
-          >
-            <Mail className="h-5 w-5 md:hidden" />
-            <span className="hidden md:inline">Get In Touch</span>
-          </Button>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* Animated Blobs */}
+      {/* Background Gradient */}
+      <div className="fixed inset-0 z-0">
         <motion.div
           initial={{ scale: 0.8, opacity: 0.3 }}
           animate={{ 
@@ -223,7 +247,41 @@ export function LandingPage() {
           }}
           className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-blue-500/20 rounded-full blur-[100px]"
         />
+      </div>
 
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Header */}
+        <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-white/10">
+          <div className="flex items-center justify-between h-16 px-4 max-w-[90rem] mx-auto">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/protolaunch.png"
+                alt="Protolaunch Logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto sm:h-10"
+              />
+            </Link>
+            
+            {/* Navigation */}
+            <Navigation onNavigate={handleNavigation} />
+
+            {/* Get in Touch Button */}
+            <Button 
+              className={cn(primaryButtonClasses, "w-10 h-10 p-0 md:w-auto md:h-auto md:px-6 md:py-3")} 
+              onClick={handleModalOpen}
+              aria-label="Open contact form"
+            >
+              <Mail className="h-5 w-5 md:hidden text-black" />
+              <span className="hidden md:inline">Get In Touch</span>
+            </Button>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section className="relative min-h-screen overflow-hidden">
         <div className="relative pt-32 pb-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -238,40 +296,42 @@ export function LandingPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-center mb-12"
               >
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
-                  From Vision to Launch
+                  <span className="text-white">
+                    Expert Shopify Development
+                  </span>
+                  <br />
+                  <span className="text-white/90">
+                    For Your Business
                 </span>
               </motion.div>
               
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="flex flex-col items-center gap-8"
-              >
-                <Button
-                  onClick={() => handleNavigation('our-services')}
-                  className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 rounded-full transition-all duration-200 hover:scale-105"
-                  aria-label="Get started and view our services"
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="text-white text-xl text-center max-w-2xl mb-16 leading-relaxed"
                 >
-                  Let's Get Started
-                </Button>
-                
-                {/* Down Arrow */}
-                <motion.button
-                  onClick={() => handleNavigation('our-services')}
-                  className="text-white/60 hover:text-white transition-colors"
-                  aria-label="Scroll to our services section"
-                  initial={{ y: 0 }}
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
+                  Transform your e-commerce vision into reality with our expert Shopify development services. We build high-performing, custom Shopify stores that drive sales.
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="flex flex-col sm:flex-row items-center gap-6"
                 >
-                  <ChevronDown className="h-8 w-8" />
-                </motion.button>
+                  <Button 
+                    className={cn(primaryButtonClasses, "px-8 py-6 text-lg")}
+                    onClick={handleModalOpen}
+                  >
+                    Start Your Project
+                  </Button>
+                  <Button 
+                    className={cn(secondaryButtonClasses, "px-8 py-6 text-lg")}
+                    onClick={() => handleNavigation('portfolio')}
+                  >
+                    View Our Work
+                  </Button>
               </motion.div>
             </div>
           </motion.div>
@@ -280,177 +340,193 @@ export function LandingPage() {
 
       <Divider />
 
-      {/* What We Deliver */}
-      <section className="py-32 bg-black scroll-mt-20" id="our-services">
-        <div className="w-full max-w-[90rem] mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-24 text-center text-white">Building Success Together</h2>
+        {/* Services Section */}
+        <section id="services" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">Our Shopify Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Expert Development",
-                description: "Technical excellence at every step",
-                icon: <Box className="h-6 w-6 text-white" />,
-                points: [
-                  "Modern tech stack",
-                  "Scalable architecture",
-                  "Clean, maintainable code"
-                ]
-              },
-              {
-                title: "Launch-Ready MVP",
-                description: "Built for real-world success",
-                icon: <Zap className="h-6 w-6 text-white" />,
-                points: [
-                  "Production deployment",
-                  "Essential features only",
-                  "Built for quick iteration"
-                ]
-              },
-              {
-                title: "True Partnership",
-                description: "Aligned for long-term success",
-                icon: <Users className="h-6 w-6 text-white" />,
-                points: [
-                  "Zero upfront costs",
-                  "Equity-based model",
-                  "Long-term support"
-                ]
-              }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 h-full">
-                  <CardContent className="p-8 space-y-6">
-                    <div className="p-3 bg-white/5 rounded-lg w-fit mb-6">
-                      {item.icon}
+              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                <CardContent className="p-8">
+                  <Layout className="w-12 h-12 mb-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-purple-400 transition-colors">Custom Store Development</h3>
+                  <p className="text-white text-lg leading-relaxed">Tailored Shopify stores that perfectly match your brand and business needs.</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-blue-500/20">
+                <CardContent className="p-8">
+                  <Settings className="w-12 h-12 mb-6 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-blue-400 transition-colors">Theme Customization</h3>
+                  <p className="text-white text-lg leading-relaxed">Modify existing themes or build custom ones to create unique shopping experiences.</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-yellow-500/20">
+                <CardContent className="p-8">
+                  <Zap className="w-12 h-12 mb-6 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />
+                  <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-yellow-400 transition-colors">App Integration</h3>
+                  <p className="text-white text-lg leading-relaxed">Seamless integration of Shopify apps and third-party services.</p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <Divider />
+
+        {/* Portfolio Section */}
+        <section id="portfolio" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">Featured Client Work</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {portfolioItems.map((item, i) => (
+                <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                  <CardContent className="p-0">
+                    <div className="relative h-64 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                      <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={600}
+                          height={400}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <Link 
+                        href={`https://${item.url}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
+                      >
+                        Visit Store
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{item.title}</h3>
-                    <p className="text-white/60">{item.description}</p>
-                    <ul className="space-y-3">
-                      {item.points.map((point, j) => (
-                        <li key={j} className="text-sm text-white/80 flex items-center space-x-3">
-                          <div className="h-1.5 w-1.5 rounded-full bg-white/40" />
-                          <span>{point}</span>
+                    <div className="p-8">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                      </div>
+                      <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
+                      <div className="flex flex-wrap gap-3 mt-2">
+                        {item.tags.map((tag, j) => (
+                          <span 
+                            key={j}
+                            className="text-sm px-5 py-2 rounded-full bg-white/10 text-white/90"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <Divider />
+
+        {/* Expertise Section */}
+        <section id="expertise" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">Why Choose Us</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="space-y-12">
+                <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
+                  <div className="flex-shrink-0">
+                    <Rocket className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">Shopify Plus Experts</h3>
+                    <p className="text-white text-lg leading-relaxed">Certified developers with deep expertise in Shopify Plus and enterprise solutions.</p>
+                  </div>
+                </div>
+                <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
+                  <div className="flex-shrink-0">
+                    <Box className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">Custom Solutions</h3>
+                    <p className="text-white text-lg leading-relaxed">Tailored development approach for your unique business requirements.</p>
+                  </div>
+                </div>
+                <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
+                  <div className="flex-shrink-0">
+                    <Handshake className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">Ongoing Support</h3>
+                    <p className="text-white text-lg leading-relaxed">Dedicated support and maintenance to ensure your store runs smoothly.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-bold mb-8 text-white">Our Expertise</h3>
+                    <ul className="space-y-6">
+                      {[
+                        "Custom Shopify Theme Development",
+                        "Shopify Plus Development",
+                        "E-commerce Strategy",
+                        "Performance Optimization",
+                        "Custom App Development"
+                      ].map((item, i) => (
+                        <li key={i} className="flex items-center gap-4 text-lg">
+                          <div className="h-2 w-2 rounded-full bg-purple-400" />
+                          <span className="text-white">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </div>
         </div>
       </section>
 
       <Divider />
 
-      {/* How It Works Section */}
-      <section className="py-32 bg-black scroll-mt-20" id="process">
-        <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex flex-col items-center justify-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">From Vision to Launch</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full mb-16">
+        {/* Process Section */}
+        <section id="process" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">Our Process</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  title: "Confidential Chat",
-                  description: "Sign mutual NDA, discuss your vision, and explore possibilities together.",
-                  icon: <Mail className="h-6 w-6 text-white" />,
+                  title: "Discovery",
+                  description: "We learn about your business, goals, and requirements.",
+                  icon: <Mail className="h-8 w-8 text-purple-400" />,
                 },
                 {
-                  title: "Partnership Terms",
-                  description: "Review equity terms, discuss responsibilities, and sign partnership agreement.",
-                  icon: <Handshake className="h-6 w-6 text-white" />,
+                  title: "Planning",
+                  description: "We create a detailed roadmap and development strategy.",
+                  icon: <Settings className="h-8 w-8 text-blue-400" />,
                 },
                 {
-                  title: "MVP Development",
-                  description: "Weekly updates, regular demos, and continuous feedback throughout the process.",
-                  icon: <Settings className="h-6 w-6 text-white" />,
+                  title: "Development",
+                  description: "We build your custom Shopify solution with regular updates.",
+                  icon: <Box className="h-8 w-8 text-green-400" />,
                 },
                 {
-                  title: "Market Launch",
-                  description: "Production deployment, launch strategy, and ongoing growth support.",
-                  icon: <Rocket className="h-6 w-6 text-white" />,
+                  title: "Launch",
+                  description: "We deploy your store and provide ongoing support.",
+                  icon: <Rocket className="h-8 w-8 text-yellow-400" />,
                 }
               ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-black border-white/20 border hover:border-white/40 transition-colors duration-200 h-full">
+                <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
                     <CardContent className="p-8">
-                      <div className="p-3 bg-white/5 rounded-lg w-fit mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-purple-500/10">
+                      <div className="transform group-hover:scale-110 transition-transform duration-300">
                         {item.icon}
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                      <p className="text-white/80">{item.description}</p>
+                    </div>
+                    <h3 className="text-2xl font-semibold mb-4 text-white">{item.title}</h3>
+                    <p className="text-white text-lg leading-relaxed">{item.description}</p>
                     </CardContent>
                   </Card>
-                </motion.div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* Our Ideal Partner */}
-      <section className="py-32 bg-black scroll-mt-20" id="partner">
-        <div className="w-full max-w-[90rem] mx-auto px-4">
-          <div className="flex flex-col items-center justify-center mb-24">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-24 text-center">Our Ideal Partner</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl">
-              <Card className="bg-black border-white/20 border hover:border-white/40 transition-all duration-300">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-8">What We Look For</h3>
-                  <ul className="space-y-4">
-                    {[
-                      "Strong product vision and market understanding",
-                      "Commitment to product growth and user acquisition",
-                      "Ability to handle operational costs and infrastructure",
-                      "Ready to take ownership of product maintenance and updates"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start space-x-3 text-white/80">
-                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5">
-                          <div className="h-1.5 w-1.5 rounded-full bg-white/60" />
-                        </div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-black border-white/20 border hover:border-white/40 transition-all duration-300">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-8">Partner Responsibilities</h3>
-                  <ul className="space-y-4">
-                    {[
-                      "Cover all operational costs (hosting, services, tools)",
-                      "Lead marketing, user acquisition, and growth strategies",
-                      "Manage ongoing product maintenance and feature requests",
-                      "Handle customer support and community engagement"
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-start space-x-3 text-white/80">
-                        <div className="h-6 w-6 flex items-center justify-center rounded-full bg-white/5">
-                          <div className="h-1.5 w-1.5 rounded-full bg-white/60" />
-                        </div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </section>
@@ -458,78 +534,95 @@ export function LandingPage() {
       <Divider />
 
       {/* CTA Section */}
-      <section className="py-24 text-center bg-black">
-        <div className="w-full max-w-[90rem] mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-white">Let's Start Building Today</h2>
+        <section className="py-40 text-center">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-10 text-white">Ready to Transform Your Online Store?</h2>
+            <p className="text-white text-xl mb-32 leading-relaxed">Let's create a high-performing Shopify store that drives results for your business.</p>
+            <div className="pt-4">
           <Button 
-            className={cn(buttonClasses, "text-lg px-8 py-4 hover:scale-105 transition-all duration-200")}
+                className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-110 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
             onClick={handleModalOpen}
-            aria-label="Open contact form"
           >
-            Get In Touch
+                Start Your Project
           </Button>
+            </div>
         </div>
       </section>
 
-      {/* Modal */}
+        {/* Contact Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="sm:max-w-[500px] p-0" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-          <div className="space-y-6 p-4 sm:p-6">
-            <DialogHeader className="space-y-4">
-              <DialogTitle id="dialog-title" className="text-2xl sm:text-3xl text-center">
-                Get in Touch
-              </DialogTitle>
+          <DialogContent className="bg-white border-0 rounded-2xl max-w-xl">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold text-black">Start Your Shopify Project</DialogTitle>
+              <DialogDescription className="text-gray-600 text-lg">
+                Tell us about your Shopify store needs and we'll get back to you within 24 hours.
+              </DialogDescription>
             </DialogHeader>
-
-            <form onSubmit={handleModalSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium">
-                  Name
-                </Label>
+            <form onSubmit={handleModalSubmit} className="space-y-6">
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="name" className="text-gray-700">Name</Label>
                 <Input
                   id="name"
                   name="name"
-                  type="text"
-                  placeholder="Your name"
-                  className="w-full px-3 py-2 text-base"
-                  required
                   value={formData.name}
                   onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl"
+                    placeholder="Your name"
                 />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </Label>
+                <div>
+                  <Label htmlFor="email" className="text-gray-700">Email</Label>
                 <Input
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="your@email.com"
-                  className="w-full px-3 py-2 text-base"
-                  required
                   value={formData.email}
                   onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl"
+                    placeholder="your@email.com"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="storeUrl" className="text-gray-700">Existing Shopify Store URL (Optional)</Label>
+                  <Input
+                    id="storeUrl"
+                    name="storeUrl"
+                    value={formData.storeUrl}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl"
+                    placeholder="your-store.myshopify.com"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="businessType" className="text-gray-700">Business Type</Label>
+                  <Input
+                    id="businessType"
+                    name="businessType"
+                    value={formData.businessType}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl"
+                    placeholder="e.g. Fashion, Electronics, etc."
                 />
               </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="projectDetails" className="text-sm font-medium">
-                  Project Details
-                </Label>
+                <div>
+                  <Label htmlFor="projectDetails" className="text-gray-700">Project Details</Label>
                 <Textarea
                   id="projectDetails"
                   name="projectDetails"
-                  placeholder="Tell us about your project..."
-                  className="w-full px-3 py-2 text-base min-h-[120px]"
-                  required
                   value={formData.projectDetails}
                   onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl"
+                    placeholder="Tell us about your project requirements, timeline, and any specific features you need..."
                 />
+                </div>
               </div>
-
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
+              <DialogFooter>
+                <Button 
+                  type="submit" 
+                  className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-lg py-6")}
+                  disabled={isSubmitting}
+                >
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -539,10 +632,11 @@ export function LandingPage() {
                   'Send Message'
                 )}
               </Button>
+              </DialogFooter>
             </form>
-          </div>
         </DialogContent>
       </Dialog>
+      </div>
     </main>
   )
 }

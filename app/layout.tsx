@@ -15,8 +15,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Protolaunch | Transform Your Vision into Reality",
-  description: "Transform your vision into reality with high-fidelity prototypes, user flow designs, and professional UI design before development.",
+  title: 'Expert Shopify Development Agency',
+  description: 'Transform your e-commerce vision into reality with our expert Shopify development services. We build high-performing, custom Shopify stores that drive sales.',
+  keywords: 'Shopify development, Shopify Plus, e-commerce, custom Shopify themes, Shopify apps, Shopify store development',
   icons: {
     icon: '/favicon.ico',
   },
