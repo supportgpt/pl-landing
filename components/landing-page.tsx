@@ -534,8 +534,14 @@ export function LandingPage() {
 
         {/* Contact Modal */}
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] sm:h-auto overflow-y-auto mx-auto">
-            <DialogHeader className="space-y-3 mb-4">
+          <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] sm:h-auto overflow-y-auto mx-auto relative">
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute right-2 top-2 rounded-full p-2 hover:bg-gray-100 transition-colors duration-200"
+            >
+              <X className="h-5 w-5 text-gray-500" />
+            </button>
+            <DialogHeader className="space-y-3 mb-4 pr-8">
               <DialogTitle className="text-xl sm:text-2xl font-bold text-black">Tell Us About Your Project</DialogTitle>
               <DialogDescription className="text-gray-600 text-base sm:text-lg">
                 We'll get back to you within 24 hours to discuss your needs.
@@ -621,12 +627,6 @@ export function LandingPage() {
                 </Button>
               </DialogFooter>
             </form>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute right-4 top-4 rounded-full p-2 text-gray-400 hover:text-gray-600"
-            >
-              <X className="h-5 w-5" />
-            </button>
           </DialogContent>
         </Dialog>
       </div>
