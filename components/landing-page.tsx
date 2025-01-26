@@ -519,8 +519,7 @@ export function LandingPage() {
       {/* CTA Section */}
         <section className="py-32 text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">Let's Build Your Store</h2>
-            <p className="text-white text-xl mb-16 leading-relaxed">Share your vision, and we'll help bring it to life.</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-20 text-white">Let's Build Your Store</h2>
             <div>
               <Button 
                 className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
