@@ -556,9 +556,6 @@ export function LandingPage() {
               <CardContent className="p-8">
                 <div className="mb-12">
                   <h3 className="text-3xl font-bold text-white mb-6">Custom Solution</h3>
-                  <div className="flex items-baseline gap-3 mb-8">
-                    <span className="text-5xl font-bold text-white">Custom Quote</span>
-                  </div>
                   <p className="text-white/90 text-xl leading-relaxed">Tailored solutions for businesses needing advanced features and custom development.</p>
                 </div>
                 <ul className="space-y-6 mb-12">
