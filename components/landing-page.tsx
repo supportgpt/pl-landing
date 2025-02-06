@@ -351,10 +351,10 @@ export function LandingPage() {
                   className="text-center max-w-[1000px]"
                 >
                   <span className="block text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white">
-                    Elevate Your
+                    Transform Your
                   </span>
                   <span className="block text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white/90">
-                    Shopify Store
+                    Online Business
                   </span>
                 </motion.h1>
                 
@@ -364,7 +364,7 @@ export function LandingPage() {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="text-white text-xl text-center max-w-2xl mt-8 mb-12 leading-relaxed"
                 >
-                  Custom development and design for ambitious brands
+                  Expert e-commerce development for ambitious brands
                 </motion.div>
 
                 <motion.div
@@ -498,6 +498,99 @@ export function LandingPage() {
                     </CardContent>
                   </Card>
               ))}
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-32">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16 text-white">Simple, Transparent Pricing</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Starter Plan */}
+            <Card className="group bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+              <CardContent className="p-8">
+                <div className="mb-12">
+                  <h3 className="text-3xl font-bold text-white mb-6">Starter Plan</h3>
+                  <div className="flex items-baseline gap-3 mb-8">
+                    <span className="text-5xl font-bold text-white">£199</span>
+                    <span className="text-lg text-white/80">one-time</span>
+                  </div>
+                  <p className="text-white/90 text-xl leading-relaxed">Perfect for businesses looking to establish their online presence with a professional Shopify store.</p>
+                </div>
+                <ul className="space-y-6 mb-12">
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Custom Shopify store setup
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    App integration & configuration
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Basic SEO optimization
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Mobile-responsive design
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Custom functionality setup
+                  </li>
+                </ul>
+                <Button 
+                  className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7")}
+                  onClick={handleModalOpen}
+                >
+                  Get Started
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Custom Plan */}
+            <Card className="group bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+              <CardContent className="p-8">
+                <div className="mb-12">
+                  <h3 className="text-3xl font-bold text-white mb-6">Custom Solution</h3>
+                  <div className="flex items-baseline gap-3 mb-8">
+                    <span className="text-5xl font-bold text-white">Custom Quote</span>
+                  </div>
+                  <p className="text-white/90 text-xl leading-relaxed">Tailored solutions for businesses needing advanced features and custom development.</p>
+                </div>
+                <ul className="space-y-6 mb-12">
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Platform-agnostic development
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Custom design & branding
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Advanced integrations
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Scalable architecture
+                  </li>
+                  <li className="flex items-center gap-4 text-white/90 text-lg">
+                    <div className="h-2.5 w-2.5 rounded-full bg-purple-400" />
+                    Ongoing support & maintenance
+                  </li>
+                </ul>
+                <Button 
+                  className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7")}
+                  onClick={handleModalOpen}
+                >
+                  Contact Us
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

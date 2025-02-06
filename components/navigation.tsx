@@ -49,6 +49,16 @@ export function Navigation({ onNavigate }: NavigationProps) {
         Process
       </Link>
       <Link
+        href="#pricing"
+        onClick={(e) => {
+          e.preventDefault()
+          onNavigate('pricing')
+        }}
+        className="text-white/80 hover:text-white transition-colors"
+      >
+        Pricing
+      </Link>
+      <Link
         href="#portfolio"
         onClick={(e) => {
           e.preventDefault()
