@@ -321,18 +321,18 @@ export function LandingPage() {
 
         {/* Hero Section */}
         <section className="relative min-h-screen overflow-hidden">
-        <div className="relative pt-32 pb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full max-w-[90rem] mx-auto px-4"
-          >
-            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-16rem)]">
+          <div className="relative pt-32 pb-32">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="w-full max-w-[90rem] mx-auto px-4"
+            >
+              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-16rem)]">
                 <motion.h1 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
                   className="text-center max-w-[1000px]"
                 >
                   <span className="block text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white">
@@ -340,7 +340,7 @@ export function LandingPage() {
                   </span>
                   <span className="block text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white/90">
                     Online Business
-                </span>
+                  </span>
                 </motion.h1>
                 
                 <motion.div
@@ -350,60 +350,66 @@ export function LandingPage() {
                   className="text-white text-xl text-center max-w-2xl mt-8 mb-12 leading-relaxed"
                 >
                   Expert e-commerce development for ambitious brands
-              </motion.div>
+                </motion.div>
               
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
                   className="flex flex-col sm:flex-row items-center gap-4"
-              >
-                <Button
+                >
+                  <Button
                     className={cn(primaryButtonClasses, "px-8 py-6 text-lg w-full sm:w-auto")}
                     onClick={handleModalOpen}
-                >
+                  >
                     Start Your Project
-                </Button>
+                  </Button>
                   <Button 
                     className={cn(secondaryButtonClasses, "px-8 py-6 text-lg w-full sm:w-auto")}
                     onClick={() => handleNavigation('portfolio')}
                   >
                     View Our Work
                   </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-      <Divider />
+        <Divider />
 
         {/* Services Section */}
         <section id="services" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">Our Shopify Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                <CardContent className="p-8">
-                  <Layout className="w-12 h-12 mb-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-purple-400 transition-colors">Custom Development</h3>
-                  <p className="text-white text-lg leading-relaxed">Crafting Shopify stores that reflect your unique brand identity.</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-blue-500/20">
-                <CardContent className="p-8">
-                  <Layout className="w-12 h-12 mb-6 text-blue-400 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-blue-400 transition-colors">Theme Customization</h3>
-                  <p className="text-white text-lg leading-relaxed">Building unique shopping experiences through custom themes.</p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-yellow-500/20">
-                <CardContent className="p-8">
-                  <Zap className="w-12 h-12 mb-6 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-yellow-400 transition-colors">App Integration</h3>
-                  <p className="text-white text-lg leading-relaxed">Connecting your store with the tools you need to succeed.</p>
-                </CardContent>
-              </Card>
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+              Our Shopify Services
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: <Layout className="w-12 h-12 mb-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />,
+                  title: "Custom Development",
+                  description: "Crafting Shopify stores that reflect your unique brand identity."
+                },
+                {
+                  icon: <Layout className="w-12 h-12 mb-6 text-blue-400 group-hover:scale-110 transition-transform duration-300" />,
+                  title: "Theme Customization",
+                  description: "Building unique shopping experiences through custom themes."
+                },
+                {
+                  icon: <Zap className="w-12 h-12 mb-6 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
+                  title: "App Integration",
+                  description: "Connecting your store with the tools you need to succeed."
+                }
+              ].map((service, i) => (
+                <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                  <CardContent className="p-8">
+                    {service.icon}
+                    <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-purple-400 transition-colors">{service.title}</h3>
+                    <p className="text-white text-lg leading-relaxed">{service.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
@@ -413,7 +419,9 @@ export function LandingPage() {
         {/* Expertise Section */}
         <section id="expertise" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">Why Choose Us</h2>
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+              Why Choose Us
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="space-y-12">
                 <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
@@ -443,7 +451,7 @@ export function LandingPage() {
                     <p className="text-white text-lg leading-relaxed">Reliable assistance to keep your store running smoothly.</p>
                   </div>
                 </div>
-                    </div>
+              </div>
               <div className="relative">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl">
                   <CardContent className="p-8">
@@ -468,11 +476,13 @@ export function LandingPage() {
         {/* Process Section */}
         <section id="process" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">Our Process</h2>
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+              Our Process
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((item, i) => (
                 <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                    <CardContent className="p-8">
+                  <CardContent className="p-8">
                     <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-purple-500/10">
                       <div className="transform group-hover:scale-110 transition-transform duration-300">
                         {item.icon}
@@ -480,345 +490,353 @@ export function LandingPage() {
                     </div>
                     <h3 className="text-2xl font-semibold mb-4 text-white">{item.title}</h3>
                     <p className="text-white text-lg leading-relaxed">{item.description}</p>
-                    </CardContent>
-                  </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Divider />
+        <Divider />
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-32">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-6 text-white">Simple, Transparent Pricing</h2>
-          <p className="text-white/80 text-xl text-center mb-16 max-w-2xl mx-auto">Choose the perfect plan for your business needs with our straightforward pricing options.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-            {/* Starter Plan */}
-            <Card className="group relative bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 opacity-50 group-hover:opacity-100 transition-opacity" />
-              <CardContent className="p-6 sm:p-8 flex flex-col min-h-[750px]">
-                <div className="mb-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white">Starter Plan</h3>
-                    <span className="px-4 py-1.5 bg-white/10 text-white/90 text-sm rounded-full">Most Popular</span>
-                  </div>
-                  <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-4xl sm:text-5xl font-bold text-white">£299</span>
-                    <span className="text-base sm:text-lg text-white/80">one-time</span>
-                  </div>
-                  <p className="text-white/90 text-lg sm:text-xl leading-relaxed">Complete Shopify store setup with everything you need to start selling online, including 90 days of support.</p>
-                </div>
-                <div className="flex-grow">
-                  <div className="space-y-2 mb-4">
-                    <span className="text-sm text-white/60 uppercase tracking-wider font-medium">Everything you need to get started</span>
-                  </div>
-                  <ul className="space-y-4 sm:space-y-6 mb-8">
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Custom Shopify store setup with professional design</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Domain setup & professional email configuration</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Essential app integration & payment gateway setup</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Mobile-responsive design optimization</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Basic SEO setup for better visibility</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-green-400 mt-2" />
-                      <span className="font-medium">90 days support & improvements included</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-8 border-t border-white/10">
-                  <Button 
-                    className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7 group-hover:shadow-lg transition-all duration-300")}
-                    onClick={handleModalOpen}
-                  >
-                    Get Started
-                  </Button>
-                  <p className="text-white/60 text-sm text-center mt-4">No hidden fees. Get started today!</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Custom Plan */}
-            <Card className="group relative bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity" />
-              <CardContent className="p-6 sm:p-8 flex flex-col min-h-[750px]">
-                <div className="mb-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white">Custom Solution</h3>
-                    <span className="px-4 py-1.5 bg-white/10 text-white/90 text-sm rounded-full">Enterprise</span>
-                  </div>
-                  <p className="text-white/90 text-lg sm:text-xl leading-relaxed mb-4">Advanced e-commerce solutions with custom development and ongoing support for growing businesses.</p>
-                  <p className="text-white/60 text-base">Tailored pricing based on your specific requirements</p>
-                </div>
-                <div className="flex-grow">
-                  <div className="space-y-2 mb-4">
-                    <span className="text-sm text-white/60 uppercase tracking-wider font-medium">Advanced features & support</span>
-                  </div>
-                  <ul className="space-y-4 sm:space-y-6 mb-8">
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Platform-agnostic development with custom solutions</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Unique design & comprehensive branding</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Advanced integrations & custom functionality</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Complete SEO & performance optimization</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                      <span>Scalable architecture for growth</span>
-                    </li>
-                    <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                      <div className="h-2.5 w-2.5 rounded-full bg-green-400 mt-2" />
-                      <span className="font-medium">Dedicated ongoing support & maintenance</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="mt-auto pt-8 border-t border-white/10">
-                  <Button 
-                    className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7 group-hover:shadow-lg transition-all duration-300")}
-                    onClick={handleModalOpen}
-                  >
-                    Contact Us
-                  </Button>
-                  <p className="text-white/60 text-sm text-center mt-4">Let's discuss your project needs</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <Divider />
-
-      {/* Portfolio Section */}
-      <section id="portfolio" className="py-32">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-white">Featured Client Stores</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioItems.map((item, i) => (
-              <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                <CardContent className="p-0">
-                  <div className="relative h-64 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                    <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={600}
-                        height={400}
-                        className="w-full h-full object-cover"
-                      />
+        {/* Pricing Section */}
+        <section id="pricing" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-6 text-white">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-white/80 text-xl text-center mb-16 max-w-2xl mx-auto">Choose the perfect plan for your business needs with our straightforward pricing options.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
+              {/* Starter Plan */}
+              <Card className="group relative bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 opacity-50 group-hover:opacity-100 transition-opacity" />
+                <CardContent className="p-6 sm:p-8 flex flex-col min-h-[750px]">
+                  <div className="mb-8">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white">Starter Plan</h3>
+                      <span className="px-4 py-1.5 bg-white/10 text-white/90 text-sm rounded-full">Most Popular</span>
                     </div>
-                    <Link 
-                      href={`https://${item.url}`} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
+                    <div className="flex items-baseline gap-2 mb-6">
+                      <span className="text-4xl sm:text-5xl font-bold text-white">£299</span>
+                      <span className="text-base sm:text-lg text-white/80">one-time</span>
+                    </div>
+                    <p className="text-white/90 text-lg sm:text-xl leading-relaxed">Complete Shopify store setup with everything you need to start selling online, including 90 days of support.</p>
+                  </div>
+                  <div className="flex-grow">
+                    <div className="space-y-2 mb-4">
+                      <span className="text-sm text-white/60 uppercase tracking-wider font-medium">Everything you need to get started</span>
+                    </div>
+                    <ul className="space-y-4 sm:space-y-6 mb-8">
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Custom Shopify store setup with professional design</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Domain setup & professional email configuration</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Essential app integration & payment gateway setup</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Mobile-responsive design optimization</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Basic SEO setup for better visibility</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-green-400 mt-2" />
+                        <span className="font-medium">90 days support & improvements included</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="mt-auto pt-8 border-t border-white/10">
+                    <Button 
+                      className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7 group-hover:shadow-lg transition-all duration-300")}
+                      onClick={handleModalOpen}
                     >
-                      Visit Store
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
+                      Get Started
+                    </Button>
+                    <p className="text-white/60 text-sm text-center mt-4">No hidden fees. Get started today!</p>
                   </div>
-                  <div className="p-8">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                    </div>
-                    <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
-                        </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <Divider />
-
-      {/* Apps Section */}
-      <section id="apps" className="py-32">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-white">Featured Client Apps</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {appShowcase.map((app, i) => (
-              <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                <CardContent className="p-0">
-                  <div className="relative h-48 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                    <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
-                      <Image
-                        src={app.image}
-                        alt={app.title}
-                        width={600}
-                        height={400}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  <div className="p-8">
+              {/* Custom Plan */}
+              <Card className="group relative bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity" />
+                <CardContent className="p-6 sm:p-8 flex flex-col min-h-[750px]">
+                  <div className="mb-8">
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl font-semibold text-white">{app.title}</h3>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center">
-                          <span className="text-yellow-400">★</span>
-                          <span className="text-white ml-1">{app.rating}</span>
-                        </div>
-                        <span className="text-white/60">({app.reviews})</span>
-                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-bold text-white">Custom Solution</h3>
+                      <span className="px-4 py-1.5 bg-white/10 text-white/90 text-sm rounded-full">Enterprise</span>
                     </div>
-                    <p className="text-white/90 text-lg mb-6">{app.description}</p>
-                    <div className="mt-8">
+                    <p className="text-white/90 text-lg sm:text-xl leading-relaxed mb-4">Advanced e-commerce solutions with custom development and ongoing support for growing businesses.</p>
+                    <p className="text-white/60 text-base">Tailored pricing based on your specific requirements</p>
+                  </div>
+                  <div className="flex-grow">
+                    <div className="space-y-2 mb-4">
+                      <span className="text-sm text-white/60 uppercase tracking-wider font-medium">Advanced features & support</span>
+                    </div>
+                    <ul className="space-y-4 sm:space-y-6 mb-8">
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Platform-agnostic development with custom solutions</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Unique design & comprehensive branding</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Advanced integrations & custom functionality</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Complete SEO & performance optimization</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
+                        <span>Scalable architecture for growth</span>
+                      </li>
+                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
+                        <div className="h-2.5 w-2.5 rounded-full bg-green-400 mt-2" />
+                        <span className="font-medium">Dedicated ongoing support & maintenance</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="mt-auto pt-8 border-t border-white/10">
+                    <Button 
+                      className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7 group-hover:shadow-lg transition-all duration-300")}
+                      onClick={handleModalOpen}
+                    >
+                      Contact Us
+                    </Button>
+                    <p className="text-white/60 text-sm text-center mt-4">Let's discuss your project needs</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <Divider />
+
+        {/* Portfolio Section */}
+        <section id="portfolio" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+              Featured Client Stores
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {portfolioItems.map((item, i) => (
+                <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                  <CardContent className="p-0">
+                    <div className="relative h-64 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                      <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={600}
+                          height={400}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                       <Link 
-                        href={app.url}
-                        target="_blank"
+                        href={`https://${item.url}`} 
+                        target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors duration-200"
+                        className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
                       >
-                        View in Shopify App Store
+                        Visit Store
                         <ArrowRight className="w-4 h-4" />
                       </Link>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                    <div className="p-8">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                      </div>
+                      <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <Divider />
+        <Divider />
 
-      {/* CTA Section */}
-      <section className="py-32 text-center">
-        <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold mb-20 text-white">Let's Build Your Store</h2>
-          <div>
-          <Button 
-              className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
-            onClick={handleModalOpen}
-          >
-              Start Your Project
-          </Button>
+        {/* Apps Section */}
+        <section id="apps" className="py-32">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+              Featured Client Apps
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {appShowcase.map((app, i) => (
+                <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                  <CardContent className="p-0">
+                    <div className="relative h-48 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                      <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                        <Image
+                          src={app.image}
+                          alt={app.title}
+                          width={600}
+                          height={400}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </div>
+                    <div className="p-8">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-2xl font-semibold text-white">{app.title}</h3>
+                        <div className="flex items-center gap-2">
+                          <div className="flex items-center">
+                            <span className="text-yellow-400">★</span>
+                            <span className="text-white ml-1">{app.rating}</span>
+                          </div>
+                          <span className="text-white/60">({app.reviews})</span>
+                        </div>
+                      </div>
+                      <p className="text-white/90 text-lg mb-6">{app.description}</p>
+                      <div className="mt-8">
+                        <Link 
+                          href={app.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors duration-200"
+                        >
+                          View in Shopify App Store
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact Modal */}
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] overflow-y-auto top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] fixed">
-          <DialogHeader className="space-y-3 mb-4">
-            <DialogTitle className="text-xl sm:text-2xl font-bold text-black">Tell Us About Your Project</DialogTitle>
-            <DialogDescription className="text-gray-600 text-base sm:text-lg">
-              We'll get back to you within 24 hours to discuss your needs.
-            </DialogDescription>
+        <Divider />
+
+        {/* CTA Section */}
+        <section className="py-32 text-center">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-20 text-white">
+              Let's Build Your Store
+            </h2>
+            <div>
+              <Button 
+                className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
+                onClick={handleModalOpen}
+              >
+                Start Your Project
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Modal */}
+        <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <DialogContent className="bg-white border-0 rounded-2xl sm:max-w-xl w-[95%] p-4 sm:p-6 max-h-[90vh] overflow-y-auto top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] fixed">
+            <DialogHeader className="space-y-3 mb-4">
+              <DialogTitle className="text-xl sm:text-2xl font-bold text-black">Tell Us About Your Project</DialogTitle>
+              <DialogDescription className="text-gray-600 text-base sm:text-lg">
+                We'll get back to you within 24 hours to discuss your needs.
+              </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleModalSubmit} className="space-y-4">
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="name" className="text-gray-700 text-sm block mb-1">Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                  placeholder="Your name"
-                  required
-                />
+              <div className="space-y-4">
+                <div>
+                  <Label htmlFor="name" className="text-gray-700 text-sm block mb-1">Name</Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="email" className="text-gray-700 text-sm block mb-1">Email</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="your@email.com"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="storeUrl" className="text-gray-700 text-sm block mb-1">Existing Shopify Store URL (Optional)</Label>
+                  <Input
+                    id="storeUrl"
+                    name="storeUrl"
+                    value={formData.storeUrl}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="your-store.myshopify.com"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="businessType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
+                  <Input
+                    id="businessType"
+                    name="businessType"
+                    value={formData.businessType}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="e.g. Fashion, Electronics, etc."
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="projectDetails" className="text-gray-700 text-sm block mb-1">Project Details</Label>
+                  <Textarea
+                    id="projectDetails"
+                    name="projectDetails"
+                    value={formData.projectDetails}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl w-full resize-none"
+                    placeholder="Tell us about your project requirements..."
+                    required
+                  />
+                </div>
               </div>
-              <div>
-                <Label htmlFor="email" className="text-gray-700 text-sm block mb-1">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="storeUrl" className="text-gray-700 text-sm block mb-1">Existing Shopify Store URL (Optional)</Label>
-                <Input
-                  id="storeUrl"
-                  name="storeUrl"
-                  value={formData.storeUrl}
-                  onChange={handleInputChange}
-                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                  placeholder="your-store.myshopify.com"
-                />
-              </div>
-              <div>
-                <Label htmlFor="businessType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
-                <Input
-                  id="businessType"
-                  name="businessType"
-                  value={formData.businessType}
-                  onChange={handleInputChange}
-                  className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                  placeholder="e.g. Fashion, Electronics, etc."
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="projectDetails" className="text-gray-700 text-sm block mb-1">Project Details</Label>
-                <Textarea
-                  id="projectDetails"
-                  name="projectDetails"
-                  value={formData.projectDetails}
-                  onChange={handleInputChange}
-                  className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl w-full resize-none"
-                  placeholder="Tell us about your project requirements..."
-                  required
-                />
-              </div>
-            </div>
-            <DialogFooter className="mt-6">
-              <Button 
-                type="submit" 
-                className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-base sm:text-lg py-4")}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  'Send Message'
-                )}
-              </Button>
-            </DialogFooter>
+              <DialogFooter className="mt-6">
+                <Button 
+                  type="submit" 
+                  className={cn(buttonClasses, "w-full bg-black text-white hover:bg-gray-900 text-base sm:text-lg py-4")}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    'Send Message'
+                  )}
+                </Button>
+              </DialogFooter>
             </form>
-        </DialogContent>
-      </Dialog>
-    </div>
+          </DialogContent>
+        </Dialog>
+      </div>
     </main>
   )
 }
