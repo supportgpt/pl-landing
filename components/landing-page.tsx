@@ -28,8 +28,9 @@ interface FormData {
   email: string
   name: string
   projectDetails: string
-  storeUrl?: string
-  businessType: string
+  projectType: string
+  companySize?: string
+  timeline?: string
 }
 
 const Divider = () => (
@@ -88,32 +89,35 @@ const portfolioItems = [
 const processSteps = [
   {
     title: "Discovery",
-    description: "Understanding your vision and requirements.",
+    description: "Understanding your business goals and technical requirements.",
     icon: <Mail className="h-8 w-8 text-purple-400" />,
   },
   {
-    title: "Planning",
-    description: "Creating a clear roadmap for development.",
+    title: "Strategy",
+    description: "Crafting a comprehensive technical solution and project roadmap.",
     icon: <Layout className="h-8 w-8 text-blue-400" />,
   },
   {
     title: "Development",
-    description: "Building your solution with regular updates.",
+    description: "Building your solution with agile methodology and regular updates.",
     icon: <Box className="h-8 w-8 text-green-400" />,
   },
   {
-    title: "Launch",
-    description: "Deploying and supporting your store.",
+    title: "Launch & Support",
+    description: "Deploying your solution and providing ongoing maintenance.",
     icon: <Rocket className="h-8 w-8 text-yellow-400" />,
   }
 ] as const
 
 const expertiseList = [
-  "Custom Shopify Theme Development",
-  "Shopify Plus Development",
-  "E-commerce Strategy",
-  "Performance Optimization",
-  "Custom App Development"
+  "Full-Stack Web Development",
+  "Custom Software Solutions",
+  "E-commerce Development",
+  "Enterprise Applications",
+  "API Integration & Development",
+  "Cloud Architecture",
+  "UI/UX Design",
+  "Performance Optimization"
 ] as const
 
 const appShowcase = [
@@ -153,8 +157,9 @@ export function LandingPage() {
     email: '',
     name: '',
     projectDetails: '',
-    storeUrl: '',
-    businessType: ''
+    projectType: '',
+    companySize: '',
+    timeline: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -178,7 +183,7 @@ export function LandingPage() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    if (!formData.email || !formData.name || !formData.projectDetails || !formData.businessType) {
+    if (!formData.email || !formData.name || !formData.projectDetails || !formData.projectType) {
       toast.error('Please fill in all required fields')
       setIsSubmitting(false)
       return
@@ -192,7 +197,7 @@ export function LandingPage() {
         },
         body: JSON.stringify({
           ...formData,
-          subject: `New Shopify Project Inquiry from ${formData.name}`
+          subject: `New Web Development Project Inquiry from ${formData.name}`
         }),
       })
 
@@ -205,8 +210,9 @@ export function LandingPage() {
         email: '',
         name: '',
         projectDetails: '',
-        storeUrl: '',
-        businessType: ''
+        projectType: '',
+        companySize: '',
+        timeline: ''
       })
       setIsModalOpen(false)
     } catch (error) {
@@ -254,7 +260,7 @@ export function LandingPage() {
           background: black;
         }
       `}</style>
-      <Toaster position="top-center" />
+      <Toaster position="bottom-right" />
       
       {/* Background Gradient */}
       <div className="fixed inset-0 z-0">
@@ -320,58 +326,49 @@ export function LandingPage() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative min-h-screen overflow-hidden">
-          <div className="relative pt-32 pb-32">
-            <motion.div
+        <section className="relative h-screen flex items-center justify-center px-4">
+          <div className="max-w-6xl mx-auto text-center">
+            <motion.h1 
+              className="text-5xl md:text-7xl font-bold text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="w-full max-w-[90rem] mx-auto px-4"
+              transition={{ duration: 0.8 }}
             >
-              <div className="flex flex-col items-center justify-center min-h-[calc(100vh-16rem)]">
-                <motion.h1 
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="text-center max-w-[1000px]"
-                >
-                  <span className="block text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white">
-                    Transform Your
-                  </span>
-                  <span className="block text-[2.5rem] sm:text-[3.5rem] md:text-[4.5rem] font-bold leading-[1.1] tracking-tight text-white/90">
-                    Online Business
-                  </span>
-                </motion.h1>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="text-white text-xl text-center max-w-2xl mt-8 mb-12 leading-relaxed"
-                >
-                  Expert e-commerce development for ambitious brands
-                </motion.div>
-              
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="flex flex-col sm:flex-row items-center gap-4"
-                >
-                  <Button
-                    className={cn(primaryButtonClasses, "px-8 py-6 text-lg w-full sm:w-auto")}
-                    onClick={handleModalOpen}
-                  >
-                    Start Your Project
-                  </Button>
-                  <Button 
-                    className={cn(secondaryButtonClasses, "px-8 py-6 text-lg w-full sm:w-auto")}
-                    onClick={() => handleNavigation('portfolio')}
-                  >
-                    View Our Work
-                  </Button>
-                </motion.div>
-              </div>
+              Transforming Ideas into
+              <br />
+              Digital Excellence
+            </motion.h1>
+            <motion.p 
+              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              We craft cutting-edge web solutions that drive business growth.
+              From enterprise applications to e-commerce platforms,
+              we bring your digital vision to life.
+            </motion.p>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <Button
+                onClick={handleModalOpen}
+                className={primaryButtonClasses}
+                size="lg"
+              >
+                Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                onClick={() => handleNavigation('portfolio')}
+                className={secondaryButtonClasses}
+                size="lg"
+              >
+                View Our Work
+              </Button>
             </motion.div>
           </div>
         </section>
@@ -379,37 +376,37 @@ export function LandingPage() {
         <Divider />
 
         {/* Services Section */}
-        <section id="services" className="py-32">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">
-              Our Shopify Services
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <Layout className="w-12 h-12 mb-6 text-purple-400 group-hover:scale-110 transition-transform duration-300" />,
-                  title: "Custom Development",
-                  description: "Crafting Shopify stores that reflect your unique brand identity."
-                },
-                {
-                  icon: <Layout className="w-12 h-12 mb-6 text-blue-400 group-hover:scale-110 transition-transform duration-300" />,
-                  title: "Theme Customization",
-                  description: "Building unique shopping experiences through custom themes."
-                },
-                {
-                  icon: <Zap className="w-12 h-12 mb-6 text-yellow-400 group-hover:scale-110 transition-transform duration-300" />,
-                  title: "App Integration",
-                  description: "Connecting your store with the tools you need to succeed."
-                }
-              ].map((service, i) => (
-                <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                  <CardContent className="p-8">
-                    {service.icon}
-                    <h3 className="text-2xl font-semibold mb-4 text-white group-hover:text-purple-400 transition-colors">{service.title}</h3>
-                    <p className="text-white text-lg leading-relaxed">{service.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+        <section id="services" className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold text-white text-center mb-16">Our Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/5 border-white/10">
+                <CardContent className="p-6">
+                  <Box className="h-12 w-12 text-purple-400 mb-4" />
+                  <h3 className="text-xl font-semibold text-white mb-2">Custom Web Development</h3>
+                  <p className="text-gray-400">
+                    Tailored web solutions built with modern technologies and best practices.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/5 border-white/10">
+                <CardContent className="p-6">
+                  <Layout className="h-12 w-12 text-blue-400 mb-4" />
+                  <h3 className="text-xl font-semibold text-white mb-2">E-commerce Solutions</h3>
+                  <p className="text-gray-400">
+                    Scalable online stores with advanced features and optimized user experience.
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="bg-white/5 border-white/10">
+                <CardContent className="p-6">
+                  <Zap className="h-12 w-12 text-yellow-400 mb-4" />
+                  <h3 className="text-xl font-semibold text-white mb-2">Enterprise Applications</h3>
+                  <p className="text-gray-400">
+                    Robust business solutions that streamline operations and boost productivity.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -731,15 +728,25 @@ export function LandingPage() {
         {/* CTA Section */}
         <section className="py-32 text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-20 text-white">
-              Let's Build Your Store
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Ready to Transform Your Digital Presence?
             </h2>
-            <div>
+            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
+              From custom web applications to scalable e-commerce solutions, we're here to bring your vision to life.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
                 onClick={handleModalOpen}
               >
                 Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button
+                className={cn(secondaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
+                onClick={() => handleNavigation('portfolio')}
+              >
+                View Our Work
               </Button>
             </div>
           </div>
@@ -782,29 +789,6 @@ export function LandingPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="storeUrl" className="text-gray-700 text-sm block mb-1">Existing Shopify Store URL (Optional)</Label>
-                  <Input
-                    id="storeUrl"
-                    name="storeUrl"
-                    value={formData.storeUrl}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="your-store.myshopify.com"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="businessType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
-                  <Input
-                    id="businessType"
-                    name="businessType"
-                    value={formData.businessType}
-                    onChange={handleInputChange}
-                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="e.g. Fashion, Electronics, etc."
-                    required
-                  />
-                </div>
-                <div>
                   <Label htmlFor="projectDetails" className="text-gray-700 text-sm block mb-1">Project Details</Label>
                   <Textarea
                     id="projectDetails"
@@ -814,6 +798,40 @@ export function LandingPage() {
                     className="bg-gray-50 border-gray-200 text-gray-900 min-h-[120px] rounded-xl w-full resize-none"
                     placeholder="Tell us about your project requirements..."
                     required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="projectType" className="text-gray-700 text-sm block mb-1">Project Type</Label>
+                  <Input
+                    id="projectType"
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="e.g. E-commerce, SaaS, etc."
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="companySize" className="text-gray-700 text-sm block mb-1">Company Size</Label>
+                  <Input
+                    id="companySize"
+                    name="companySize"
+                    value={formData.companySize}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="e.g. Small, Medium, Large"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="timeline" className="text-gray-700 text-sm block mb-1">Timeline</Label>
+                  <Input
+                    id="timeline"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleInputChange}
+                    className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
+                    placeholder="e.g. 3-6 months, 6-12 months"
                   />
                 </div>
               </div>
