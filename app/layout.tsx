@@ -9,9 +9,9 @@ const lexendDeca = Lexend_Deca({
 });
 
 export const metadata: Metadata = {
-  title: 'Expert Shopify Development Agency',
-  description: 'Transform your e-commerce vision into reality with our expert Shopify development services. We build high-performing, custom Shopify stores that drive sales.',
-  keywords: 'Shopify development, Shopify Plus, e-commerce, custom Shopify themes, Shopify apps, Shopify store development',
+  title: 'Web Development for Local Businesses & SaaS Products',
+  description: 'We create effective web solutions for businesses of all sizes, from local businesses seeking more customers to SaaS founders building the next big thing.',
+  keywords: 'local business websites, SaaS development, Shopify apps, custom web applications, UI/UX design, web development agency',
   icons: {
     icon: '/favicon.ico',
   },
