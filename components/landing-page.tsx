@@ -49,40 +49,32 @@ const Divider = () => (
 
 const portfolioItems = [
   {
-    title: "Fair Harbor Clothing",
-    description: "Sustainable swimwear brand with advanced product customization and eco-friendly focus.",
-    image: "/images/portfolio/fairharbor.png",
-    url: "fairharborclothing.com"
+    title: "Upgrade Your PC",
+    description: "Local PC repair business with a professionally designed website to showcase their services and attract local customers.",
+    image: "/images/portfolio/upgradeyourpc.png",
+    url: "#",
+    type: "Local Business"
   },
   {
-    title: "Joon Haircare",
-    description: "Premium hair care brand with subscription model and personalized recommendations.",
-    image: "/images/portfolio/joon.png",
-    url: "joonhaircare.com"
+    title: "Contact247",
+    description: "Landing page for a Shopify app that transforms contact forms into AI customer service assistants, providing 24/7 support.",
+    image: "/images/portfolio/contact247.png",
+    url: "#",
+    type: "SaaS Product"
   },
   {
-    title: "Diaspora Co.",
-    description: "Direct-to-consumer spice company with unique storytelling and ethical sourcing.",
-    image: "/images/portfolio/diaspora.png",
-    url: "diasporaco.com"
+    title: "Pretty Comparison Tables",
+    description: "Shopify app enabling merchants to create stunning comparison tables for products and collections to boost conversion rates.",
+    image: "/images/apps/comparison-tables.png",
+    url: "https://apps.shopify.com/pretty-comparisons",
+    type: "Shopify App"
   },
   {
-    title: "Loops Beauty",
-    description: "Modern skincare brand with innovative product presentation and mobile-first design.",
-    image: "/images/portfolio/loops.png",
-    url: "loopsbeauty.com"
-  },
-  {
-    title: "Juice Press",
-    description: "Multi-location juice brand with complex inventory and order management.",
-    image: "/images/portfolio/juicepress.png",
-    url: "juicepress.com"
-  },
-  {
-    title: "Sophie Ratner",
-    description: "Luxury jewelry brand with 3D product visualization and custom engraving.",
-    image: "/images/portfolio/sophieratner.png",
-    url: "sophieratner.com"
+    title: "Pretty Sales Pop Up",
+    description: "Shopify app that displays recent store activity with unique sales popups to build social proof and increase conversions.",
+    image: "/images/apps/sales-popup.png",
+    url: "https://apps.shopify.com/pretty-sales-popup",
+    type: "Shopify App"
   }
 ] as const
 
@@ -110,45 +102,14 @@ const processSteps = [
 ] as const
 
 const expertiseList = [
-  "Full-Stack Web Development",
-  "Custom Software Solutions",
-  "E-commerce Development",
-  "Enterprise Applications",
-  "API Integration & Development",
-  "Cloud Architecture",
+  "Local Business Websites",
+  "SaaS Product Development",
+  "Shopify App Development",
+  "E-commerce Solutions",
+  "Custom Web Applications",
   "UI/UX Design",
-  "Performance Optimization"
-] as const
-
-const appShowcase = [
-  {
-    title: "Pretty Sales Pop Up",
-    description: "Build social proof and boost sales with real-time cart and purchase notifications. Display recent live activity from your store with unique sales popups.",
-    image: "/images/apps/sales-popup.png",
-    url: "https://apps.shopify.com/pretty-sales-popup",
-    rating: "4.5",
-    reviews: "33",
-    features: [
-      "Real-time notifications",
-      "Customizable templates",
-      "Mobile responsive",
-      "Live activity tracking"
-    ]
-  },
-  {
-    title: "Pretty Comparison Tables",
-    description: "Create stunning comparison tables for your products and collections. Help customers make informed decisions with visual, dynamic comparisons.",
-    image: "/images/apps/comparison-tables.png",
-    url: "https://apps.shopify.com/pretty-comparisons",
-    rating: "3.7",
-    reviews: "18",
-    features: [
-      "Visual comparisons",
-      "Dynamic tables",
-      "Mobile friendly",
-      "Custom templates"
-    ]
-  }
+  "Performance Optimization",
+  "API Integration & Development"
 ] as const
 
 export function LandingPage() {
@@ -326,49 +287,72 @@ export function LandingPage() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative h-screen flex items-center justify-center px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold text-white mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              Transforming Ideas into
-              <br />
-              Digital Excellence
-            </motion.h1>
-            <motion.p 
-              className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+          <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="relative z-10 text-left">
+              <motion.h1 
+                className="text-4xl md:text-5xl font-bold text-white mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                Web Solutions for
+                <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+                  Businesses of All Sizes
+                </span>
+              </motion.h1>
+              <motion.p 
+                className="text-lg md:text-xl text-gray-300 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                From local repair shops to SaaS startups, we build effective web solutions 
+                that drive business growth and connect you with your customers.
+              </motion.p>
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <Button
+                  onClick={handleModalOpen}
+                  className={primaryButtonClasses}
+                  size="lg"
+                >
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  onClick={() => handleNavigation('portfolio')}
+                  className={secondaryButtonClasses}
+                  size="lg"
+                >
+                  View Our Work
+                </Button>
+              </motion.div>
+            </div>
+
+            {/* Hero Image */}
+            <motion.div 
+              className="relative z-10 w-full h-full min-h-[400px] lg:min-h-[600px]"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              We craft cutting-edge web solutions that drive business growth.
-              From enterprise applications to e-commerce platforms,
-              we bring your digital vision to life.
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Button
-                onClick={handleModalOpen}
-                className={primaryButtonClasses}
-                size="lg"
-              >
-                Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                onClick={() => handleNavigation('portfolio')}
-                className={secondaryButtonClasses}
-                size="lg"
-              >
-                View Our Work
-              </Button>
+              <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/hero.png"
+                  alt="Web Solutions for All Businesses"
+                  fill
+                  className="object-contain object-center"
+                  priority
+                  quality={90}
+                />
+              </div>
             </motion.div>
           </div>
         </section>
@@ -378,32 +362,35 @@ export function LandingPage() {
         {/* Services Section */}
         <section id="services" className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white text-center mb-16">Our Services</h2>
+            <h2 className="text-4xl font-bold text-white text-center mb-6">Our Services</h2>
+            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+              Tailored web solutions for businesses at any stage - from local shops to growing SaaS products.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="bg-white/5 border-white/10">
+              <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
                 <CardContent className="p-6">
                   <Box className="h-12 w-12 text-purple-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">Custom Web Development</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">Local Business Websites</h3>
                   <p className="text-gray-400">
-                    Tailored web solutions built with modern technologies and best practices.
+                    Professional websites for local businesses that attract customers and grow your presence in the community.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-white/5 border-white/10">
+              <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
                 <CardContent className="p-6">
                   <Layout className="h-12 w-12 text-blue-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">E-commerce Solutions</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">SaaS Development</h3>
                   <p className="text-gray-400">
-                    Scalable online stores with advanced features and optimized user experience.
+                    End-to-end SaaS product development from landing pages to complex applications with subscription management.
                   </p>
                 </CardContent>
               </Card>
-              <Card className="bg-white/5 border-white/10">
+              <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
                 <CardContent className="p-6">
                   <Zap className="h-12 w-12 text-yellow-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">Enterprise Applications</h3>
+                  <h3 className="text-xl font-semibold text-white mb-2">Shopify Apps</h3>
                   <p className="text-gray-400">
-                    Robust business solutions that streamline operations and boost productivity.
+                    Custom Shopify app development to extend functionality and create new revenue streams for your business.
                   </p>
                 </CardContent>
               </Card>
@@ -416,9 +403,12 @@ export function LandingPage() {
         {/* Expertise Section */}
         <section id="expertise" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+            <h2 className="text-4xl font-bold text-center mb-6 text-white">
               Why Choose Us
             </h2>
+            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+              We understand the unique needs of both local businesses and tech startups.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="space-y-12">
                 <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
@@ -426,8 +416,8 @@ export function LandingPage() {
                     <Rocket className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">Shopify Plus Expertise</h3>
-                    <p className="text-white text-lg leading-relaxed">Deep experience with enterprise-level Shopify solutions.</p>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">Local Business Focus</h3>
+                    <p className="text-white text-lg leading-relaxed">We help local businesses establish a strong digital presence that attracts nearby customers.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
@@ -435,8 +425,8 @@ export function LandingPage() {
                     <Box className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">Custom Solutions</h3>
-                    <p className="text-white text-lg leading-relaxed">Development that adapts to your specific needs.</p>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">SaaS Expertise</h3>
+                    <p className="text-white text-lg leading-relaxed">We build scalable SaaS products that help founders validate their ideas and grow their user base.</p>
                   </div>
                 </div>
                 <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
@@ -444,8 +434,8 @@ export function LandingPage() {
                     <Handshake className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">Ongoing Support</h3>
-                    <p className="text-white text-lg leading-relaxed">Reliable assistance to keep your store running smoothly.</p>
+                    <h3 className="text-2xl font-semibold mb-3 text-white">Shopify App Development</h3>
+                    <p className="text-white text-lg leading-relaxed">We create successful Shopify apps that solve real merchant problems and generate recurring revenue.</p>
                   </div>
                 </div>
               </div>
@@ -473,9 +463,12 @@ export function LandingPage() {
         {/* Process Section */}
         <section id="process" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">
+            <h2 className="text-4xl font-bold text-center mb-6 text-white">
               Our Process
             </h2>
+            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+              Simple and transparent workflow that delivers results for businesses of all sizes.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((item, i) => (
                 <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
@@ -496,139 +489,16 @@ export function LandingPage() {
 
         <Divider />
 
-        {/* Pricing Section */}
-        <section id="pricing" className="py-32">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-6 text-white">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-white/80 text-xl text-center mb-16 max-w-2xl mx-auto">Choose the perfect plan for your business needs with our straightforward pricing options.</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
-              {/* Starter Plan */}
-              <Card className="group relative bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-blue-500 opacity-50 group-hover:opacity-100 transition-opacity" />
-                <CardContent className="p-6 sm:p-8 flex flex-col min-h-[750px]">
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-white">Starter Plan</h3>
-                      <span className="px-4 py-1.5 bg-white/10 text-white/90 text-sm rounded-full">Most Popular</span>
-                    </div>
-                    <div className="flex items-baseline gap-2 mb-6">
-                      <span className="text-4xl sm:text-5xl font-bold text-white">£299</span>
-                      <span className="text-base sm:text-lg text-white/80">one-time</span>
-                    </div>
-                    <p className="text-white/90 text-lg sm:text-xl leading-relaxed">Complete Shopify store setup with everything you need to start selling online, including 90 days of support.</p>
-                  </div>
-                  <div className="flex-grow">
-                    <div className="space-y-2 mb-4">
-                      <span className="text-sm text-white/60 uppercase tracking-wider font-medium">Everything you need to get started</span>
-                    </div>
-                    <ul className="space-y-4 sm:space-y-6 mb-8">
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Custom Shopify store setup with professional design</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Domain setup & professional email configuration</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Essential app integration & payment gateway setup</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Mobile-responsive design optimization</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Basic SEO setup for better visibility</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-green-400 mt-2" />
-                        <span className="font-medium">90 days support & improvements included</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="mt-auto pt-8 border-t border-white/10">
-                    <Button 
-                      className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7 group-hover:shadow-lg transition-all duration-300")}
-                      onClick={handleModalOpen}
-                    >
-                      Get Started
-                    </Button>
-                    <p className="text-white/60 text-sm text-center mt-4">No hidden fees. Get started today!</p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Custom Plan */}
-              <Card className="group relative bg-black border-2 border-white/20 hover:border-purple-500/50 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity" />
-                <CardContent className="p-6 sm:p-8 flex flex-col min-h-[750px]">
-                  <div className="mb-8">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-2xl sm:text-3xl font-bold text-white">Custom Solution</h3>
-                      <span className="px-4 py-1.5 bg-white/10 text-white/90 text-sm rounded-full">Enterprise</span>
-                    </div>
-                    <p className="text-white/90 text-lg sm:text-xl leading-relaxed mb-4">Advanced e-commerce solutions with custom development and ongoing support for growing businesses.</p>
-                    <p className="text-white/60 text-base">Tailored pricing based on your specific requirements</p>
-                  </div>
-                  <div className="flex-grow">
-                    <div className="space-y-2 mb-4">
-                      <span className="text-sm text-white/60 uppercase tracking-wider font-medium">Advanced features & support</span>
-                    </div>
-                    <ul className="space-y-4 sm:space-y-6 mb-8">
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Platform-agnostic development with custom solutions</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Unique design & comprehensive branding</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Advanced integrations & custom functionality</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Complete SEO & performance optimization</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-purple-400 mt-2" />
-                        <span>Scalable architecture for growth</span>
-                      </li>
-                      <li className="flex items-start gap-4 text-white/90 text-base sm:text-lg">
-                        <div className="h-2.5 w-2.5 rounded-full bg-green-400 mt-2" />
-                        <span className="font-medium">Dedicated ongoing support & maintenance</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="mt-auto pt-8 border-t border-white/10">
-                    <Button 
-                      className={cn(buttonClasses, "w-full bg-white text-black hover:bg-white/90 text-lg py-7 group-hover:shadow-lg transition-all duration-300")}
-                      onClick={handleModalOpen}
-                    >
-                      Contact Us
-                    </Button>
-                    <p className="text-white/60 text-sm text-center mt-4">Let's discuss your project needs</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* Portfolio Section */}
+        {/* Projects Section */}
         <section id="portfolio" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">
-              Featured Client Stores
+            <h2 className="text-4xl font-bold text-center mb-6 text-white">
+              Our Projects
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+              From local businesses to Shopify apps, we've helped clients of all sizes achieve their goals.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {portfolioItems.map((item, i) => (
                 <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
                   <CardContent className="p-0">
@@ -644,77 +514,28 @@ export function LandingPage() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <Link 
-                        href={`https://${item.url}`} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
-                      >
-                        Visit Store
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
+                      {item.url !== "#" && (
+                        <Link 
+                          href={item.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
+                        >
+                          {item.type === "Shopify App" ? "View App" : "Visit Site"}
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      )}
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+                          {item.type}
+                        </span>
+                      </div>
                     </div>
                     <div className="p-8">
                       <div className="flex justify-between items-start mb-4">
                         <h3 className="text-xl font-semibold text-white">{item.title}</h3>
                       </div>
-                      <p className="text-white/90 mb-6 line-clamp-2">{item.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <Divider />
-
-        {/* Apps Section */}
-        <section id="apps" className="py-32">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16 text-white">
-              Featured Client Apps
-            </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {appShowcase.map((app, i) => (
-                <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                  <CardContent className="p-0">
-                    <div className="relative h-48 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                      <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
-                        <Image
-                          src={app.image}
-                          alt={app.title}
-                          width={600}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                    <div className="p-8">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-semibold text-white">{app.title}</h3>
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center">
-                            <span className="text-yellow-400">★</span>
-                            <span className="text-white ml-1">{app.rating}</span>
-                          </div>
-                          <span className="text-white/60">({app.reviews})</span>
-                        </div>
-                      </div>
-                      <p className="text-white/90 text-lg mb-6">{app.description}</p>
-                      <div className="mt-8">
-                        <Link 
-                          href={app.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors duration-200"
-                        >
-                          View in Shopify App Store
-                          <ArrowRight className="w-4 h-4" />
-                        </Link>
-                      </div>
+                      <p className="text-white/90 mb-6">{item.description}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -729,10 +550,10 @@ export function LandingPage() {
         <section className="py-32 text-center">
           <div className="max-w-4xl mx-auto px-4">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Ready to Transform Your Digital Presence?
+              Ready to Grow Your Business Online?
             </h2>
             <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-              From custom web applications to scalable e-commerce solutions, we're here to bring your vision to life.
+              Whether you're a local shop looking for more customers or a SaaS founder building the next big thing, we're here to help you succeed.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
@@ -801,26 +622,26 @@ export function LandingPage() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="projectType" className="text-gray-700 text-sm block mb-1">Project Type</Label>
+                  <Label htmlFor="projectType" className="text-gray-700 text-sm block mb-1">Business Type</Label>
                   <Input
                     id="projectType"
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleInputChange}
                     className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="e.g. E-commerce, SaaS, etc."
+                    placeholder="e.g. Local Business, SaaS, E-commerce"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="companySize" className="text-gray-700 text-sm block mb-1">Company Size</Label>
+                  <Label htmlFor="companySize" className="text-gray-700 text-sm block mb-1">Project Goals</Label>
                   <Input
                     id="companySize"
                     name="companySize"
                     value={formData.companySize}
                     onChange={handleInputChange}
                     className="bg-gray-50 border-gray-200 text-gray-900 rounded-xl h-12 w-full"
-                    placeholder="e.g. Small, Medium, Large"
+                    placeholder="e.g. Increase local sales, Launch SaaS MVP"
                   />
                 </div>
                 <div>
