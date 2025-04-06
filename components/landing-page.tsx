@@ -63,6 +63,20 @@ const portfolioItems = [
     type: "SaaS Product"
   },
   {
+    title: "Joon Haircare",
+    description: "Premium hair care brand with a custom Shopify storefront featuring subscription model and personalized recommendations.",
+    image: "/images/portfolio/joon.png",
+    url: "#",
+    type: "E-commerce"
+  },
+  {
+    title: "Loops Beauty",
+    description: "Modern skincare brand with innovative product presentation and mobile-first design for an exceptional shopping experience.",
+    image: "/images/portfolio/loops.png",
+    url: "#",
+    type: "E-commerce"
+  },
+  {
     title: "Pretty Comparison Tables",
     description: "Shopify app enabling merchants to create stunning comparison tables for products and collections to boost conversion rates.",
     image: "/images/apps/comparison-tables.png",
@@ -287,10 +301,10 @@ export function LandingPage() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+        <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-24 md:pt-32">
           <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
-            <div className="relative z-10 text-left">
+            <div className="relative z-10 text-left mt-8 sm:mt-0">
               <motion.h1 
                 className="text-4xl md:text-5xl font-bold text-white mb-6"
                 initial={{ opacity: 0, y: 20 }}
@@ -309,7 +323,7 @@ export function LandingPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                From local repair shops to SaaS startups, we build effective web solutions 
+                From local businesses to SaaS startups, we build effective web solutions 
                 that drive business growth and connect you with your customers.
               </motion.p>
               <motion.div

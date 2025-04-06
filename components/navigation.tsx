@@ -1,19 +1,8 @@
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 
 interface NavigationProps {
   onNavigate: (id: string) => void
 }
-
-const navigationItems = [
-  { id: 'services', label: 'Services' },
-  { id: 'expertise', label: 'Why Us' },
-  { id: 'process', label: 'Process' },
-  { id: 'portfolio', label: 'Work' },
-  { id: 'apps', label: 'Apps' },
-] as const
 
 export function Navigation({ onNavigate }: NavigationProps) {
   return (
@@ -36,7 +25,7 @@ export function Navigation({ onNavigate }: NavigationProps) {
         }}
         className="text-white/80 hover:text-white transition-colors"
       >
-        Expertise
+        Why Us
       </Link>
       <Link
         href="#process"
@@ -49,16 +38,6 @@ export function Navigation({ onNavigate }: NavigationProps) {
         Process
       </Link>
       <Link
-        href="#pricing"
-        onClick={(e) => {
-          e.preventDefault()
-          onNavigate('pricing')
-        }}
-        className="text-white/80 hover:text-white transition-colors"
-      >
-        Pricing
-      </Link>
-      <Link
         href="#portfolio"
         onClick={(e) => {
           e.preventDefault()
@@ -66,17 +45,7 @@ export function Navigation({ onNavigate }: NavigationProps) {
         }}
         className="text-white/80 hover:text-white transition-colors"
       >
-        Work
-      </Link>
-      <Link
-        href="#apps"
-        onClick={(e) => {
-          e.preventDefault()
-          onNavigate('apps')
-        }}
-        className="text-white/80 hover:text-white transition-colors"
-      >
-        Apps
+        Projects
       </Link>
     </nav>
   )
