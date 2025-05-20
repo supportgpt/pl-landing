@@ -23,6 +23,7 @@ import {
 import { Toaster, toast } from 'react-hot-toast'
 import { cn } from "@/lib/utils"
 import { Navigation } from './navigation'
+import { AnimateOnScroll, AnimateStaggerContainer, FadeUpItem } from './scroll-animations'
 
 interface FormData {
   email: string
@@ -376,39 +377,53 @@ export function LandingPage() {
         {/* Services Section */}
         <section id="services" className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-white text-center mb-6">Our Services</h2>
-            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
-              Tailored web solutions for businesses at any stage - from local shops to growing SaaS products.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
-                <CardContent className="p-6">
-                  <Box className="h-12 w-12 text-purple-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">Local Business Websites</h3>
-                  <p className="text-gray-400">
-                    Professional websites for local businesses that attract customers and grow your presence in the community.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
-                <CardContent className="p-6">
-                  <Layout className="h-12 w-12 text-blue-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">SaaS Development</h3>
-                  <p className="text-gray-400">
-                    End-to-end SaaS product development from landing pages to complex applications with subscription management.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
-                <CardContent className="p-6">
-                  <Zap className="h-12 w-12 text-yellow-400 mb-4" />
-                  <h3 className="text-xl font-semibold text-white mb-2">Shopify Apps</h3>
-                  <p className="text-gray-400">
-                    Custom Shopify app development to extend functionality and create new revenue streams for your business.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
+            <AnimateOnScroll>
+              <h2 className="text-4xl font-bold text-white text-center mb-6">Our Services</h2>
+            </AnimateOnScroll>
+            
+            <AnimateOnScroll delay={0.1}>
+              <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+                Tailored web solutions for businesses at any stage - from local shops to growing SaaS products.
+              </p>
+            </AnimateOnScroll>
+            
+            <AnimateStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <FadeUpItem>
+                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <Box className="h-12 w-12 text-purple-400 mb-4" />
+                    <h3 className="text-xl font-semibold text-white mb-2">Local Business Websites</h3>
+                    <p className="text-gray-400">
+                      Professional websites for local businesses that attract customers and grow your presence in the community.
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeUpItem>
+              
+              <FadeUpItem>
+                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <Layout className="h-12 w-12 text-blue-400 mb-4" />
+                    <h3 className="text-xl font-semibold text-white mb-2">SaaS Development</h3>
+                    <p className="text-gray-400">
+                      End-to-end SaaS product development from landing pages to complex applications with subscription management.
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeUpItem>
+              
+              <FadeUpItem>
+                <Card className="bg-white/5 border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <Zap className="h-12 w-12 text-yellow-400 mb-4" />
+                    <h3 className="text-xl font-semibold text-white mb-2">Shopify Apps</h3>
+                    <p className="text-gray-400">
+                      Custom Shopify app development to extend functionality and create new revenue streams for your business.
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeUpItem>
+            </AnimateStaggerContainer>
           </div>
         </section>
 
@@ -417,43 +432,58 @@ export function LandingPage() {
         {/* Expertise Section */}
         <section id="expertise" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-6 text-white">
-              Why Choose Us
-            </h2>
-            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
-              We understand the unique needs of both local businesses and tech startups.
-            </p>
+            <AnimateOnScroll>
+              <h2 className="text-4xl font-bold text-center mb-6 text-white">
+                Why Choose Us
+              </h2>
+            </AnimateOnScroll>
+            
+            <AnimateOnScroll delay={0.1}>
+              <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+                We understand the unique needs of both local businesses and tech startups.
+              </p>
+            </AnimateOnScroll>
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-              <div className="space-y-12">
-                <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
-                  <div className="flex-shrink-0">
-                    <Rocket className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+              <AnimateStaggerContainer className="space-y-12">
+                <FadeUpItem>
+                  <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
+                    <div className="flex-shrink-0">
+                      <Rocket className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-3 text-white">Local Business Focus</h3>
+                      <p className="text-white text-lg leading-relaxed">We help local businesses establish a strong digital presence that attracts nearby customers.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">Local Business Focus</h3>
-                    <p className="text-white text-lg leading-relaxed">We help local businesses establish a strong digital presence that attracts nearby customers.</p>
+                </FadeUpItem>
+                
+                <FadeUpItem>
+                  <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
+                    <div className="flex-shrink-0">
+                      <Box className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-3 text-white">SaaS Expertise</h3>
+                      <p className="text-white text-lg leading-relaxed">We build scalable SaaS products that help founders validate their ideas and grow their user base.</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
-                  <div className="flex-shrink-0">
-                    <Box className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                </FadeUpItem>
+                
+                <FadeUpItem>
+                  <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
+                    <div className="flex-shrink-0">
+                      <Handshake className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-3 text-white">Shopify App Development</h3>
+                      <p className="text-white text-lg leading-relaxed">We create successful Shopify apps that solve real merchant problems and generate recurring revenue.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">SaaS Expertise</h3>
-                    <p className="text-white text-lg leading-relaxed">We build scalable SaaS products that help founders validate their ideas and grow their user base.</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 hover:translate-x-2 transition-transform duration-300 cursor-pointer">
-                  <div className="flex-shrink-0">
-                    <Handshake className="w-10 h-10 text-purple-400 group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold mb-3 text-white">Shopify App Development</h3>
-                    <p className="text-white text-lg leading-relaxed">We create successful Shopify apps that solve real merchant problems and generate recurring revenue.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="relative">
+                </FadeUpItem>
+              </AnimateStaggerContainer>
+              
+              <AnimateOnScroll delay={0.3}>
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl">
                   <CardContent className="p-8">
                     <h3 className="text-2xl font-bold mb-8 text-white">Our Expertise</h3>
@@ -467,7 +497,7 @@ export function LandingPage() {
                     </ul>
                   </CardContent>
                 </Card>
-              </div>
+              </AnimateOnScroll>
             </div>
           </div>
         </section>
@@ -477,27 +507,35 @@ export function LandingPage() {
         {/* Process Section */}
         <section id="process" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-6 text-white">
-              Our Process
-            </h2>
-            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
-              Simple and transparent workflow that delivers results for businesses of all sizes.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <AnimateOnScroll>
+              <h2 className="text-4xl font-bold text-center mb-6 text-white">
+                Our Process
+              </h2>
+            </AnimateOnScroll>
+            
+            <AnimateOnScroll delay={0.1}>
+              <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+                Simple and transparent workflow that delivers results for businesses of all sizes.
+              </p>
+            </AnimateOnScroll>
+            
+            <AnimateStaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {processSteps.map((item, i) => (
-                <Card key={i} className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-purple-500/10">
-                      <div className="transform group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
+                <FadeUpItem key={i}>
+                  <Card className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 rounded-2xl group cursor-pointer hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                    <CardContent className="p-8">
+                      <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-purple-500/10">
+                        <div className="transform group-hover:scale-110 transition-transform duration-300">
+                          {item.icon}
+                        </div>
                       </div>
-                    </div>
-                    <h3 className="text-2xl font-semibold mb-4 text-white">{item.title}</h3>
-                    <p className="text-white text-lg leading-relaxed">{item.description}</p>
-                  </CardContent>
-                </Card>
+                      <h3 className="text-2xl font-semibold mb-4 text-white">{item.title}</h3>
+                      <p className="text-white text-lg leading-relaxed">{item.description}</p>
+                    </CardContent>
+                  </Card>
+                </FadeUpItem>
               ))}
-            </div>
+            </AnimateStaggerContainer>
           </div>
         </section>
 
@@ -506,55 +544,63 @@ export function LandingPage() {
         {/* Projects Section */}
         <section id="portfolio" className="py-32">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-6 text-white">
-              Our Projects
-            </h2>
-            <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
-              From local businesses to Shopify apps, we've helped clients of all sizes achieve their goals.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <AnimateOnScroll>
+              <h2 className="text-4xl font-bold text-center mb-6 text-white">
+                Our Projects
+              </h2>
+            </AnimateOnScroll>
+            
+            <AnimateOnScroll delay={0.1}>
+              <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
+                From local businesses to Shopify apps, we've helped clients of all sizes achieve their goals.
+              </p>
+            </AnimateOnScroll>
+            
+            <AnimateStaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {portfolioItems.map((item, i) => (
-                <Card key={i} className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
-                  <CardContent className="p-0">
-                    <div className="relative h-64 overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                      <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={600}
-                          height={400}
-                          className="w-full h-full object-cover"
-                        />
+                <FadeUpItem key={i}>
+                  <Card className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 overflow-hidden rounded-2xl hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-purple-500/20">
+                    <CardContent className="p-0">
+                      <div className="relative h-64 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-blue-500/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+                        <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            width={600}
+                            height={400}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        {item.url !== "#" && (
+                          <Link 
+                            href={item.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
+                          >
+                            {item.type === "Shopify App" ? "View App" : "Visit Site"}
+                            <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        )}
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
+                            {item.type}
+                          </span>
+                        </div>
                       </div>
-                      {item.url !== "#" && (
-                        <Link 
-                          href={item.url} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
-                        >
-                          {item.type === "Shopify App" ? "View App" : "Visit Site"}
-                          <ArrowRight className="w-4 h-4" />
-                        </Link>
-                      )}
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
-                          {item.type}
-                        </span>
+                      <div className="p-8">
+                        <div className="flex justify-between items-start mb-4">
+                          <h3 className="text-xl font-semibold text-white">{item.title}</h3>
+                        </div>
+                        <p className="text-white/90 mb-6">{item.description}</p>
                       </div>
-                    </div>
-                    <div className="p-8">
-                      <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                      </div>
-                      <p className="text-white/90 mb-6">{item.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </FadeUpItem>
               ))}
-            </div>
+            </AnimateStaggerContainer>
           </div>
         </section>
 
@@ -563,27 +609,35 @@ export function LandingPage() {
         {/* CTA Section */}
         <section className="py-32 text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Ready to Grow Your Business Online?
-            </h2>
-            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
-              Whether you're a local shop looking for more customers or a SaaS founder building the next big thing, we're here to help you succeed.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
-                onClick={handleModalOpen}
-              >
-                Start Your Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                className={cn(secondaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
-                onClick={() => handleNavigation('portfolio')}
-              >
-                View Our Work
-              </Button>
-            </div>
+            <AnimateOnScroll>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                Ready to Grow Your Business Online?
+              </h2>
+            </AnimateOnScroll>
+            
+            <AnimateOnScroll delay={0.1}>
+              <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto">
+                Whether you're a local shop looking for more customers or a SaaS founder building the next big thing, we're here to help you succeed.
+              </p>
+            </AnimateOnScroll>
+            
+            <AnimateOnScroll delay={0.2}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  className={cn(primaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
+                  onClick={handleModalOpen}
+                >
+                  Start Your Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button
+                  className={cn(secondaryButtonClasses, "text-lg px-12 py-7 hover:scale-105 hover:shadow-2xl hover:shadow-white/20 transition-all duration-300")}
+                  onClick={() => handleNavigation('portfolio')}
+                >
+                  View Our Work
+                </Button>
+              </div>
+            </AnimateOnScroll>
           </div>
         </section>
 
