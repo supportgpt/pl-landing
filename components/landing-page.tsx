@@ -52,29 +52,22 @@ const portfolioItems = [
     title: "Upgrade Your PC",
     description: "Local PC repair business with a professionally designed website to showcase their services and attract local customers.",
     image: "/images/portfolio/upgradeyourpc.png",
-    url: "#",
+    url: "https://www.upgrademypc.co.uk/",
     type: "Local Business"
   },
   {
     title: "Contact247",
     description: "Landing page for a Shopify app that transforms contact forms into AI customer service assistants, providing 24/7 support.",
     image: "/images/portfolio/contact247.png",
-    url: "#",
+    url: "https://www.contact247app.com/",
     type: "SaaS Product"
   },
   {
-    title: "Joon Haircare",
-    description: "Premium hair care brand with a custom Shopify storefront featuring subscription model and personalized recommendations.",
-    image: "/images/portfolio/joon.png",
-    url: "#",
-    type: "E-commerce"
-  },
-  {
-    title: "Loops Beauty",
-    description: "Modern skincare brand with innovative product presentation and mobile-first design for an exceptional shopping experience.",
-    image: "/images/portfolio/loops.png",
-    url: "#",
-    type: "E-commerce"
+    title: "Dazeign",
+    description: "3D clothing apparel design platform that allows users to create custom t-shirt designs in an interactive 3D environment.",
+    image: "/images/portfolio/dazeign.png",
+    url: "https://www.dazeign.co/",
+    type: "SaaS Product"
   },
   {
     title: "Pretty Comparison Tables",
@@ -541,17 +534,15 @@ export function LandingPage() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      {item.url !== "#" && (
-                        <Link 
-                          href={item.url} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
-                        >
-                          {item.type === "Shopify App" ? "View App" : "Visit Site"}
-                          <ArrowRight className="w-4 h-4" />
-                        </Link>
-                      )}
+                      <Link 
+                        href={item.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="absolute bottom-4 right-4 bg-white text-black hover:bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2"
+                      >
+                        {item.type === "Shopify App" ? "View App" : "Visit Site"}
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
                       <div className="absolute top-4 left-4">
                         <span className="bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">
                           {item.type}
